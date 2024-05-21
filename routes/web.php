@@ -17,7 +17,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return ;
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
