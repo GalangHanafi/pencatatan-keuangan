@@ -11,7 +11,7 @@ class DashboardController extends Controller
         $data = [
             'title'         => 'Dashboard Test',
             // 'contoh'        => User::count(),
-            'content'       => 'dashboard/index',
+            'content'       => 'dashboard.index',
         ];
         return view("admin.layouts.wrapper", $data);
     }
