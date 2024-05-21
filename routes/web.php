@@ -19,7 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return ;
+    return view('admin.dashboard');
 });
 
 // Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -46,6 +46,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 
-// Route::get('', function () {
-//     return view('');
-// });
+Route::get('/tes', function () {
+    return view('');
+});
