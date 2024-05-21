@@ -48,11 +48,6 @@
     </header>
     <!--  Header End -->
     <div class="container-fluid">
-        <!--  Row 1 -->
-        <div class="row">
-            <div class="col-lg-12">
-                @if ($content)
-                    @include($content)
-                @endif
-            </div>
-        </div>
+        @if ($content)
+            @include($content)
+        @endif
