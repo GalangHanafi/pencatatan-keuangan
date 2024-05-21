@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'photo',
     ];
 
     /**
@@ -41,4 +42,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // relation between user and account (user has many accounts)
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    // relation between user and category (user has many categories)
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+    // relation between user and transaction (user has many transactions)
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }
