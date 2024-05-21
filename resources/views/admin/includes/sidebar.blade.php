@@ -56,8 +56,7 @@
                 </span>
                 <span class="hide-menu"> category</span>
               </a>
-            </li>
-        
+            </li>       
         </nav>
         <!-- End Sidebar navigation -->
       </div>

@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-md-4">
                 <h5><i class="ti ti-comet"></i> Tentang Kami</h5>
-                <p>Empower Your Financial Insights With Our Intuitive Accounting System - Simplifying Complexity, Maximizing Efficiency.</p>
+                <p>Empower Your Financial Insights With Our Intuitive Accounting System - Simplifying Complexity,
+                    Maximizing Efficiency.</p>
             </div>
             <div class="col-md-4">
                 <h5><i class="ti ti-mailbox"></i> Kontak</h5>
@@ -21,7 +22,8 @@
                 </ul>
             </div>
         </div>
-        <br><hr>
+        <br>
+        <hr>
         <div class="row">
             <div class="col-12 text-center">
                 <p>&copy; 2024 Accounting System. Semua hak dilindungi.</p>
@@ -33,12 +35,12 @@
 
 
 <script src="admin/src/assets/libs/jquery/dist/jquery.min.js"></script>
-  <script src="admin/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="admin/src/assets/js/sidebarmenu.js"></script>
-  <script src="admin/src/assets/js/app.min.js"></script>
-  <script src="admin/src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="admin/src/assets/libs/simplebar/dist/simplebar.js"></script>
-  <script src="admin/src/assets/js/dashboard.js"></script>
-</body> 
+<script src="admin/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="admin/src/assets/js/sidebarmenu.js"></script>
+<script src="admin/src/assets/js/app.min.js"></script>
+<script src="admin/src/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+<script src="admin/src/assets/libs/simplebar/dist/simplebar.js"></script>
+<script src="admin/src/assets/js/dashboard.js"></script>
+</body>
 
 </html>
