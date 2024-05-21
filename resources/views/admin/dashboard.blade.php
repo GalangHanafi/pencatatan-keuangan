@@ -1,6 +1,0 @@
-
-
-
-    <!--  Sidebar End -->
-    <!--  Main wrapper -->
-
