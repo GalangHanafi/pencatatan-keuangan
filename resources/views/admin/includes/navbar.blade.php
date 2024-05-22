@@ -1,6 +1,6 @@
 <div class="body-wrapper">
-      <!--  Header Start -->
-      <header class="app-header">
+    <!--  Header Start -->
+    <header class="app-header">
         <nav class="navbar navbar-expand-lg navbar-light">
           <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">
@@ -36,22 +36,16 @@
                       <i class="ti ti-list-check fs-6"></i>
                       <p class="mb-0 fs-3">My Task</p>
                     </a>
-                    <a href="{{route('logout')}}" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
+                    <a href="./authentication-login.html" class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</a>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
         </nav>
-      </header>
-      <!--  Header End -->
-      <div class="container-fluid">
-        <!--  Row 1 -->
-        <div class="row">
-              <div class="col-lg-12">
-              @if ($content)
-                @include($content)
-            @endif
-              </div>
-        </div>
-
+    </header>
+    <!--  Header End -->
+    <div class="container-fluid">
+        @if ($content)
+            @include($content)
+        @endif
