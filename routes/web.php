@@ -19,7 +19,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return ("<h1>halo</h1>");
 });
 
 // Route::post('/register', [RegisteredUserController::class, 'store']);
