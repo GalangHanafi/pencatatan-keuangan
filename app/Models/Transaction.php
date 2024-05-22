@@ -14,10 +14,11 @@ class Transaction extends Model
         'user_id',
         'account_id',
         'category_id',
+        'name',
+        'description',
         'type',
         'amount',
         'date',
-        'description',
     ];
 
     // relation between transaction and user (one user has many transactions)
