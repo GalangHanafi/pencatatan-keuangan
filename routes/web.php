@@ -22,16 +22,7 @@ Route::get('/', function () {
     return ;
 });
 
-// Route::post('/register', [RegisteredUserController::class, 'store']);
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-Route::get('logout', function () {
-    auth()->logout();
-    Session()->flush();
-
-    return Redirect::to('/');
-})->name('logout');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -45,7 +36,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
-
-Route::get('/ulang', function () {
-    return view('');
-});
