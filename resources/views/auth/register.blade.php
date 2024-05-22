@@ -29,7 +29,7 @@
                   <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" name="name" aria-describedby="textHelp">
-                    <x-input-error :messages="$errors->get('nama')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">Email Address</label>
