@@ -20,11 +20,17 @@ class CategoryController extends Controller
         $customCategories = $user->categories()->get();
         $defaultCategories = Category::where('user_id', null)->get();
 
-        $categories = [
+        $data = [
+            'title' => 'Category',
+            'breadcrumb' => [
+                'Category' => route('category.index'),
+            ],
+            'defaultCategories' => $defaultCategories,
             'customCategories' => $customCategories,
-            'defaultCategories' => $defaultCategories
+            'content' => 'category.index',
         ];
-        dd($categories);
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -32,7 +38,16 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Create Category',
+            'breadcrumb' => [
+                'Category' => route('category.index'),
+                'Create' => route('category.create'),
+            ],
+            'content' => 'category.create',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -56,7 +71,17 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $data = [
+            'title' => 'Edit Category',
+            'breadcrumb' => [
+                'Category' => route('category.index'),
+                'Edit' => route('category.edit', $category->id),
+            ],
+            'category' => $category,
+            'content' => 'category.edit',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
