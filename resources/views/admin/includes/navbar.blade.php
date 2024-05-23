@@ -18,31 +18,36 @@
             <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                 <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
                     <li class="nav-item dropdown">
-                        <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="{{ asset('admin/src/assets/images/profile/user-1.jpg') }}" alt=""
-                                width="35" height="35" class="rounded-circle">
-                        </a>
+                        {{-- dropdown button --}}
+                        <div class="nav-link nav-icon-hover cursor-pointer" id="drop2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="{{ asset(auth()->user()->photo) }}" alt="" width="35" height="35"
+                                class="rounded-circle">
+                        </div>
+                        {{-- dropdown menu --}}
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                             <div class="message-body">
-                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
+                                <div class="d-flex align-items-center dropdown-item">
+                                    <p class="mb-0 fs-3">{{ auth()->user()->name }}</p>
+                                </div>
+                                <hr class="my-1"/>
+                                <a href="{{ route('profile.edit') }}"
+                                    class="d-flex align-items-center gap-2 dropdown-item">
                                     <i class="ti ti-user fs-6"></i>
                                     <p class="mb-0 fs-3">My Profile</p>
                                 </a>
-                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                    <i class="ti ti-mail fs-6"></i>
-                                    <p class="mb-0 fs-3">My Account</p>
-                                </a>
-                                <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
-                                    <i class="ti ti-list-check fs-6"></i>
-                                    <p class="mb-0 fs-3">My Task</p>
+                                <a href="#"
+                                    class="d-flex align-items-center gap-2 dropdown-item">
+                                    <i class="ti ti-settings fs-6"></i>
+                                    <p class="mb-0 fs-3">Setting</p>
                                 </a>
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
-                                    <button class="btn btn-outline-primary mx-3 mt-2 d-block">Logout</button>
+                                    <button class="btn btn-outline-danger mx-3 mt-2 d-block">Logout</button>
                                 </form>
                             </div>
                         </div>
+                        {{-- dropdown menu end --}}
                     </li>
                 </ul>
             </div>
