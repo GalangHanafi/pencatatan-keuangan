@@ -80,13 +80,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <form action="{{ route('category.destroy', $customCategory->id) }}" method="POST"
-                                    class="d-inline-block">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form> --}}
                             </td>
                         </tr>
                     @empty
@@ -105,10 +98,8 @@
 
 <div class="card">
     <div class="card-body">
-        <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title fw-semibold mb-4">Default {{ $title }}</h5>
-        </div>
-        {{-- list of categories --}}
+        <h5 class="card-title fw-semibold mb-4">Default {{ $title }}</h5>
+        {{-- list of defaultcategories --}}
         <div class="table-responsive">
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
