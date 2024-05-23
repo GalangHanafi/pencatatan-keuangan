@@ -16,7 +16,7 @@ class DefaultCategorySeeder extends Seeder
         $defaultCategories = [
             [
                 'name' => 'Food',
-                'icon' => 'ti ti-food',
+                'icon' => 'ti ti-meat',
             ],
             [
                 'name' => 'Transportation',
@@ -52,11 +52,11 @@ class DefaultCategorySeeder extends Seeder
             ],
             [
                 'name' => 'Utilities',
-                'icon' => 'ti ti-flash',
+                'icon' => 'ti ti-activity',
             ],
             [
                 'name' => 'Savings',
-                'icon' => 'ti ti-piggy-bank',
+                'icon' => 'ti ti-pig-money',
             ],
             [
                 'name' => 'Gifts',
