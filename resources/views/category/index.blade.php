@@ -45,12 +45,48 @@
                                 <a href="{{ route('category.edit', $customCategory->id) }}"
                                     class="btn btn-primary btn-sm">Edit</a>
                                 {{-- delete button --}}
-                                <form action="{{ route('category.destroy', $customCategory->id) }}" method="POST"
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#deleteModal">
+                                    Delete
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteModal" tabindex="-1"
+                                    aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="deleteModalLabel">Are You Sure?</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p class="fs-5 fw-bold text-danger">
+                                                    <span><i class="{{ $customCategory->icon }} mx-2"></i></span>
+                                                    {{ $customCategory->name }}
+                                                </p>
+                                                <p class=>Do you really want to delete this category?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <form action="{{ route('category.destroy', $customCategory->id) }}"
+                                                    method="POST" class="d-inline-block">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- <form action="{{ route('category.destroy', $customCategory->id) }}" method="POST"
                                     class="d-inline-block">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @empty
