@@ -12,7 +12,13 @@ class IconController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title'         => 'Dashboard Test',
+            'icons'         => Icon::all(),
+            'content'       => 'icon',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**

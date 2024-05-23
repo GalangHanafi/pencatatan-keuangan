@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IconController;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -23,6 +24,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// check icon
+Route::get('/icon', [IconController::class, 'index']);
 
 // loged in
 Route::middleware('auth')->group(function () {
