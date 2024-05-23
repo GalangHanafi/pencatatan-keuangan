@@ -1,1 +1,4 @@
+*
+# except .gitignore for photos/default.jpg
+!photos/default.jpg
 !.gitignore
