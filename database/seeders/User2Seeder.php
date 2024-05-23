@@ -17,14 +17,13 @@ class User2Seeder extends Seeder
         $user = User::create([
             'name' => 'User 2',
             'email' => 'user2@example.com',
-            'password' => '12345678',
-            'photo' => 'storage/photos/default.jpg',
+            'password' => bcrypt('12345678'),
         ]);
 
         // make account for this user named cash
         $user->accounts()->create([
             'name' => 'user2 Cash',
-            'amount' => 2000,
+            'balance' => 2000,
             'icon' => 'ti ti-cash',
         ]);
     }
