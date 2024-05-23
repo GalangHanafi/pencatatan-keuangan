@@ -5,6 +5,6 @@
 
 <script>
     setTimeout(() => {
-        document.getElementById('alert').remove();
+        $('#alert').fadeOut()
     }, 2000);
 </script>
