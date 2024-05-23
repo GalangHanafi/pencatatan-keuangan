@@ -105,6 +105,16 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // check if user->id == category->user_id
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+        if ($user->id !== $category->user_id) {
+            // abort(404);
+            abort(403);
+        }
+
+        $category->delete();
+
+        return redirect()->route('category.index')->with('danger', '"' . $category->name . '" deleted successfully');
     }
 }
