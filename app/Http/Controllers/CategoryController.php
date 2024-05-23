@@ -71,6 +71,14 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        // check if user->id == category->user_id
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+        if ($user->id !== $category->user_id) {
+            // abort(404);
+            abort(403);
+        }
+
         $data = [
             'title' => 'Edit Category',
             'breadcrumb' => [
