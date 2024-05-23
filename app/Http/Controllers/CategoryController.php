@@ -15,11 +15,13 @@ class CategoryController extends Controller
         // current user
         $user = auth()->user();
 
-        $customCategories = $user->categories->get();
+        $customCategories = $user->categories()->get();
         $defaultCategories = Category::where('user_id', null)->get();
 
-        $categories = $customCategories->merge($defaultCategories);
-
+        $categories = [
+            'customCategories' => $customCategories,
+            'defaultCategories' => $defaultCategories
+        ];
         dd($categories);
     }
 
