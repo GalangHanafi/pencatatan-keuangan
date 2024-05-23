@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             User1Seeder::class,
             User2Seeder::class,
             DefaultCategorySeeder::class,
+            IconSeeder::class,
         ]);
     }
 }
