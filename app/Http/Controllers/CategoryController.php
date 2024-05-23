@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,13 +14,16 @@ class CategoryController extends Controller
     public function index()
     {
         // current user
-        $user = auth()->user();
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
 
-        $customCategories = $user->categories->get();
+        $customCategories = $user->categories()->get();
         $defaultCategories = Category::where('user_id', null)->get();
 
-        $categories = $customCategories->merge($defaultCategories);
-
+        $categories = [
+            'customCategories' => $customCategories,
+            'defaultCategories' => $defaultCategories
+        ];
         dd($categories);
     }
 
