@@ -76,10 +76,7 @@
             <x-alert type="danger"> {{ session('danger') }} </x-alert>
         @endif
         @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <x-alert type="success"> {{ session('success') }} </x-alert>
         @endif
         {{-- session status end --}}
 
