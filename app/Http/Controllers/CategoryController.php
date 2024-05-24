@@ -43,9 +43,9 @@ class CategoryController extends Controller
             'title' => 'Create Category',
             'breadcrumb' => [
                 'Category' => route('category.index'),
-                'Create' => route('category.create'),
+                'Create' => '#',
             ],
-            'icons'         => Icon::all(),
+            'icons' => Icon::all(),
             'content' => 'category.create',
         ];
 
@@ -60,13 +60,14 @@ class CategoryController extends Controller
         // current user
         $userId = auth()->user()->id;
         $user = User::find($userId);
+
+        // validation
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'required|string',
         ]);
 
-
-        // Category::create($data);
+        // create category
         $user->categories()->create($data);
 
         return redirect()->to('category')->with('success', 'Category created successfully!');
@@ -85,11 +86,12 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        // check if user->id == category->user_id
+        // current user
         $userId = auth()->user()->id;
         $user = User::find($userId);
+
+        // authorization
         if ($user->id !== $category->user_id) {
-            // abort(404);
             abort(403);
         }
 
@@ -97,7 +99,7 @@ class CategoryController extends Controller
             'title' => 'Edit Category',
             'breadcrumb' => [
                 'Category' => route('category.index'),
-                'Edit' => route('category.edit', $category->id),
+                'Edit' => '#',
             ],
             'icons'         => Icon::all(),
             'category' => $category,
@@ -115,13 +117,19 @@ class CategoryController extends Controller
         // current user
         $userId = auth()->user()->id;
         $user = User::find($userId);
+
+        // authorization
+        if ($user->id !== $category->user_id) {
+            abort(403);
+        }
+
+        // validation
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'required|string',
         ]);
 
-
-        // Category::create($data);
+        // update category
         $category->update($data);
 
         return redirect()->to('category')->with('success', 'Category updated successfully!');
@@ -133,14 +141,16 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        // check if user->id == category->user_id
+        // current user
         $userId = auth()->user()->id;
         $user = User::find($userId);
+
+        // authorization
         if ($user->id !== $category->user_id) {
-            // abort(404);
             abort(403);
         }
 
+        // delete category
         $category->delete();
 
         return redirect()->route('category.index')->with('danger', '"' . $category->name . '" deleted successfully');
