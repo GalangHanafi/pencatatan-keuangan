@@ -99,6 +99,7 @@ class CategoryController extends Controller
                 'Category' => route('category.index'),
                 'Edit' => route('category.edit', $category->id),
             ],
+            'icons'         => Icon::all(),
             'category' => $category,
             'content' => 'category.edit',
         ];
@@ -111,8 +112,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        // current user
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string',
+        ]);
+
+
+        // Category::create($data);
+        $category->update($data);
+
+        return redirect()->to('category')->with('success', 'Category updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
