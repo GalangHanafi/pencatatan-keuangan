@@ -30,14 +30,13 @@
                                 <div class="d-flex align-items-center dropdown-item">
                                     <p class="mb-0 fs-3">{{ auth()->user()->name }}</p>
                                 </div>
-                                <hr class="my-1"/>
+                                <hr class="my-1" />
                                 <a href="{{ route('profile.edit') }}"
                                     class="d-flex align-items-center gap-2 dropdown-item">
                                     <i class="ti ti-user fs-6"></i>
                                     <p class="mb-0 fs-3">My Profile</p>
                                 </a>
-                                <a href="#"
-                                    class="d-flex align-items-center gap-2 dropdown-item">
+                                <a href="#" class="d-flex align-items-center gap-2 dropdown-item">
                                     <i class="ti ti-settings fs-6"></i>
                                     <p class="mb-0 fs-3">Setting</p>
                                 </a>
@@ -55,6 +54,22 @@
     </header>
     <!--  Header End -->
     <div class="container-fluid">
+        {{-- breadcrumb --}}
+        @isset($breadcrumb)
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                    @foreach ($breadcrumb as $key => $url)
+                        @if ($url != '#')
+                            <li class="breadcrumb-item"><a href="{{ $url }}">{{ $key }}</a></li>
+                        @else
+                            <li class="breadcrumb-item active" aria-current="page">{{ $key }}</li>
+                        @endif
+                    @endforeach
+                </ol>
+            </nav>
+        @endisset
+        {{-- breadcrumb end --}}
 
         {{-- session status --}}
         @if (session('danger'))
@@ -66,8 +81,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+        {{-- session status end --}}
 
         {{-- content --}}
-        @if ($content)
+        @isset($content)
             @include($content)
-        @endif
+        @endisset
+        {{-- content end --}}
