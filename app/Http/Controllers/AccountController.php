@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Account;
+use App\Models\Icon;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -12,8 +14,18 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accounts = Account::all();
-        dd($accounts);
+        // current user
+        $user = User::find(auth()->user()->id);
+        $data = [
+            'title' => 'Account',
+            'breadcrumb' => [
+                'Account' => route('account.index'),
+            ],
+            'accounts' => $user->accounts()->get(),
+            'content' => 'account.index',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -21,7 +33,17 @@ class AccountController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Create Account',
+            'breadcrumb' => [
+                'Account' => route('account.index'),
+                'Create' => '#',
+            ],
+            'icons' => Icon::all(),
+            'content' => 'account.create',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -45,7 +67,26 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        //
+        // check if user->id == account->user_id
+        $user = User::find(auth()->user()->id);
+
+        if ($user->id !== $account->user_id) {
+            // abort(404);
+            abort(403);
+        }
+
+        $data = [
+            'title' => 'Edit Account',
+            'breadcrumb' => [
+                'Account' => route('account.index'),
+                'Edit' => '#',
+            ],
+            'icons' => Icon::all(),
+            'account' => $account,
+            'content' => 'account.edit',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -61,6 +102,15 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        //
+        // check if user->id == account->user_id
+        $user = User::find(auth()->user()->id);
+
+        if ($user->id !== $account->user_id) {
+            // abort(404);
+            abort(403);
+        }
+
+        $account->delete();
+        return redirect()->route('account.index');
     }
 }

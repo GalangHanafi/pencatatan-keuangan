@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -39,5 +40,6 @@ Route::middleware('auth')->group(function () {
 // verified
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('category', CategoryController::class);
+    Route::resource('account', AccountController::class);
 });
 require __DIR__ . '/auth.php';
