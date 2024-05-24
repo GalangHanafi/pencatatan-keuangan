@@ -22,7 +22,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // guest
 Route::get('/', function () {
+<<<<<<< HEAD
     return view('welcome');
+=======
+    return ("<h1>halo</h1>");
+>>>>>>> 94d87dc7824f12e713a3351661db549882f8be59
 });
 
 // check icon
