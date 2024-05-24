@@ -19,7 +19,7 @@ class AccountController extends Controller
         $data = [
             'title' => 'Account',
             'breadcrumb' => [
-                'Account' => route('account.index'),
+                'Account' => '#',
             ],
             'accounts' => $user->accounts()->get(),
             'content' => 'account.index',
