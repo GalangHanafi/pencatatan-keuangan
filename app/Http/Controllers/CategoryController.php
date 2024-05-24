@@ -42,7 +42,7 @@ class CategoryController extends Controller
             'title' => 'Create Category',
             'breadcrumb' => [
                 'Category' => route('category.index'),
-                'Create' => route('category.create'),
+                'Create' => "#",
             ],
             'content' => 'category.create',
         ];
@@ -83,7 +83,7 @@ class CategoryController extends Controller
             'title' => 'Edit Category',
             'breadcrumb' => [
                 'Category' => route('category.index'),
-                'Edit' => route('category.edit', $category->id),
+                'Edit' => '#',
             ],
             'category' => $category,
             'content' => 'category.edit',
