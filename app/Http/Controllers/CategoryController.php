@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Icon;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,7 @@ class CategoryController extends Controller
                 'Category' => route('category.index'),
                 'Create' => route('category.create'),
             ],
+            'icons'         => Icon::all(),
             'content' => 'category.create',
         ];
 
@@ -55,7 +57,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // current user
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string',
+        ]);
+
+
+        // Category::create($data);
+        $user->categories()->create($data);
+
+        return redirect()->to('category')->with('success', 'Category created successfully!');
     }
 
     /**
