@@ -16,6 +16,7 @@ class AccountController extends Controller
     {
         // current user
         $user = User::find(auth()->user()->id);
+
         $data = [
             'title' => 'Account',
             'breadcrumb' => [
@@ -51,7 +52,20 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // current user
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+
+        // authorization
+        if ($user->id !== $request->user_id) {
+            abort(403);
+        }
+
+        // validation
+
+        // create account
+
+        // return redirect()->to('account')->with('success', 'Account created successfully!');
     }
 
     /**
@@ -67,11 +81,12 @@ class AccountController extends Controller
      */
     public function edit(Account $account)
     {
-        // check if user->id == account->user_id
-        $user = User::find(auth()->user()->id);
+        // current user
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
 
+        // authorization
         if ($user->id !== $account->user_id) {
-            // abort(404);
             abort(403);
         }
 
@@ -94,7 +109,20 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        //
+        // current user
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
+
+        // authorization
+        if ($user->id !== $request->user_id) {
+            abort(403);
+        }
+
+        // validation
+
+        // update account
+
+        // return redirect()->to('account')->with('success', 'Account updated successfully!');
     }
 
     /**
@@ -102,11 +130,12 @@ class AccountController extends Controller
      */
     public function destroy(Account $account)
     {
-        // check if user->id == account->user_id
-        $user = User::find(auth()->user()->id);
+        // current user
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
 
+        // authorization
         if ($user->id !== $account->user_id) {
-            // abort(404);
             abort(403);
         }
 
