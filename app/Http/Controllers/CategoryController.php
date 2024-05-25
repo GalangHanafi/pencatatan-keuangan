@@ -23,8 +23,8 @@ class CategoryController extends Controller
 
         $data = [
             'title' => 'Category',
-            'breadcrumb' => [
-                'Category' => route('category.index'),
+            'breadcrumbs' => [
+                'Category' => "#",
             ],
             'defaultCategories' => $defaultCategories,
             'customCategories' => $customCategories,
@@ -41,7 +41,7 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => 'Create Category',
-            'breadcrumb' => [
+            'breadcrumbs' => [
                 'Category' => route('category.index'),
                 'Create' => '#',
             ],
@@ -97,7 +97,7 @@ class CategoryController extends Controller
 
         $data = [
             'title' => 'Edit Category',
-            'breadcrumb' => [
+            'breadcrumbs' => [
                 'Category' => route('category.index'),
                 'Edit' => '#',
             ],
