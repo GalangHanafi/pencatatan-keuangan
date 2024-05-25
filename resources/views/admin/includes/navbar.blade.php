@@ -55,11 +55,11 @@
     <!--  Header End -->
     <div class="container-fluid">
         {{-- breadcrumb --}}
-        @isset($breadcrumb)
-            <nav aria-label="breadcrumb">
+        @isset($breadcrumbs)
+            <nav aria-label="breadcrumbs">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                    @foreach ($breadcrumb as $key => $url)
+                    @foreach ($breadcrumbs as $key => $url)
                         @if ($url != '#')
                             <li class="breadcrumb-item"><a href="{{ $url }}">{{ $key }}</a></li>
                         @else
