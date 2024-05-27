@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Appland Bootstrap Template - Index</title>
+    <title>Kantongku</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{asset('landing-page/assets/img/favicon.png')}}" rel="icon">
-    <link href="{{asset('landing-page/assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+    <link href="{{asset('landing-page/assets/img/icon.jpg')}}" rel="icon">
+    <link href="{{asset('landing-page/assets/img/icon.jpg')}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -44,12 +44,12 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <div class="logo">
-                <h1><a href="index.html">Appland</a></h1>
+                <h1><a href="index.html">Kantongku</a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
 
-            <nav id="navbar" class="navbar">
+            <nav id="navbar" class="navbar">    
                 <ul>
                     <!-- jika sudah login-->
                     @if (Auth::check())
@@ -75,10 +75,8 @@
             <div class="row">
                 <div class="col-lg-6 d-lg-flex flex-lg-column justify-content-center align-items-stretch pt-5 pt-lg-0 order-2 order-lg-1" data-aos="fade-up">
                     <div>
-                        <h1>App landing page template</h1>
-                        <h2>Lorem ipsum dolor sit amet, tota senserit percipitur ius ut, usu et fastidii forensibus voluptatibus. His ei nihil feugait</h2>
-                        <a href="#" class="download-btn"><i class="bx bxl-play-store"></i> Google Play</a>
-                        <a href="#" class="download-btn"><i class="bx bxl-apple"></i> App Store</a>
+                        <h1>Kantongku</h1>
+                        <h2>Kantongku adalah aplikasi manajemen keuangan pribadi yang dirancang untuk membantu Anda mengelola pendapatan dan pengeluaran dengan mudah dan efisien. Dengan fitur-fitur canggih namun user-friendly, Kantongku adalah solusi tepat untuk Anda yang ingin mencapai kestabilan finansial.</h2>
                     </div>
                 </div>
                 <div class="col-lg-6 d-lg-flex flex-lg-column align-items-stretch order-1 order-lg-2 hero-img" data-aos="fade-up">
@@ -97,7 +95,6 @@
 
                 <div class="section-title">
                     <h2>App Features</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
                 </div>
 
                 <div class="row no-gutters">
@@ -106,33 +103,28 @@
                             <div class="row">
                                 <div class="col-md-6 icon-box" data-aos="fade-up">
                                     <i class="bx bx-receipt"></i>
-                                    <h4>Corporis voluptates sit</h4>
-                                    <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
+                                    <h4>Pelacakan Pengeluaran Otomatis.</h4>
+                                    <p>Pantau setiap pengeluaran Anda tanpa ribet</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
                                     <i class="bx bx-cube-alt"></i>
-                                    <h4>Ullamco laboris nisi</h4>
-                                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
+                                    <h4>Anggaran Bulanan.</h4>
+                                    <p>Buat dan kelola anggaran untuk berbagai kategori pengeluaran</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                                    <i class="bx bx-images"></i>
-                                    <h4>Labore consequatur</h4>
-                                    <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
+                                    <i class="bx bx-time"></i>
+                                    <h4>Pengingat Pembayaran.</h4>
+                                    <p>Tidak perlu lagi khawatir terlambat bayar tagihan.</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
                                     <i class="bx bx-shield"></i>
-                                    <h4>Beatae veritatis</h4>
-                                    <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
+                                    <h4>Keamanan Terjamin.</h4>
+                                    <p>Data keuangan Anda aman dengan enkripsi tingkat tinggi</p>
                                 </div>
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
                                     <i class="bx bx-atom"></i>
-                                    <h4>Molestiae dolor</h4>
-                                    <p>Et fuga et deserunt et enim. Dolorem architecto ratione tensa raptor marte</p>
-                                </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
-                                    <i class="bx bx-id-card"></i>
-                                    <h4>Explicabo consectetur</h4>
-                                    <p>Est autem dicta beatae suscipit. Sint veritatis et sit quasi ab aut inventore</p>
+                                    <h4>Laporan Keuangan.</h4>
+                                    <p>Lihat laporan keuangan harian, mingguan, atau bulanan dengan visual yang mudah dipahami</p>
                                 </div>
                             </div>
                         </div>
@@ -170,30 +162,8 @@
                         </p>
                     </div>
                 </div>
-
                 <div class="row content">
-                    <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
-                        <img src="{{asset('assets/img/details-2.png')}}" class="img-fluid" alt="">
-                    </div>
-                    <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
-                        <h3>Corporis temporibus maiores provident</h3>
-                        <p class="fst-italic">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua.
-                        </p>
-                        <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                            culpa qui officia deserunt mollit anim id est laborum
-                        </p>
-                        <p>
-                            Inventore id enim dolor dicta qui et magni molestiae. Mollitia optio officia illum ut cupiditate eos autem. Soluta dolorum repellendus repellat amet autem rerum illum in. Quibusdam occaecati est nisi esse. Saepe aut dignissimos distinctio id enim.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="row content">
-                    <div class="col-md-4" data-aos="fade-right">
+                    <div class="col-md-4 order-1 order-md-2" data-aos="fade-right">
                         <img src="{{asset('landing-page/assets/img/details-3.png')}}" class="img-fluid" alt="">
                     </div>
                     <div class="col-md-8 pt-5" data-aos="fade-up">
@@ -214,7 +184,7 @@
                 </div>
 
                 <div class="row content">
-                    <div class="col-md-4 order-1 order-md-2" data-aos="fade-left">
+                    <div class="col-md-4 " data-aos="fade-left">
                         <img src="{{asset('landing-page/assets/img/details-4.png')}}" class="img-fluid" alt="">
                     </div>
                     <div class="col-md-8 pt-5 order-2 order-md-1" data-aos="fade-up">
@@ -355,62 +325,7 @@
                 </div>
 
             </div>
-        </section><!-- End Testimonials Section -->
-
-        <!-- ======= Pricing Section ======= -->
-        <section id="pricing" class="pricing">
-            <div class="container">
-
-                <div class="section-title">
-                    <h2>Pricing</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-                <div class="row no-gutters">
-
-                    <div class="col-lg-4 box" data-aos="fade-right">
-                        <h3>Free</h3>
-                        <h4>$0<span>per month</span></h4>
-                        <ul>
-                            <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                            <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                            <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                            <li class="na"><i class="bx bx-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                            <li class="na"><i class="bx bx-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-                        </ul>
-                        <a href="#" class="get-started-btn">Get Started</a>
-                    </div>
-
-                    <div class="col-lg-4 box featured" data-aos="fade-up">
-                        <h3>Business</h3>
-                        <h4>$29<span>per month</span></h4>
-                        <ul>
-                            <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                            <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                            <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                            <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                            <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-                        </ul>
-                        <a href="#" class="get-started-btn">Get Started</a>
-                    </div>
-
-                    <div class="col-lg-4 box" data-aos="fade-left">
-                        <h3>Developer</h3>
-                        <h4>$49<span>per month</span></h4>
-                        <ul>
-                            <li><i class="bx bx-check"></i> Quam adipiscing vitae proin</li>
-                            <li><i class="bx bx-check"></i> Nec feugiat nisl pretium</li>
-                            <li><i class="bx bx-check"></i> Nulla at volutpat diam uteera</li>
-                            <li><i class="bx bx-check"></i> Pharetra massa massa ultricies</li>
-                            <li><i class="bx bx-check"></i> Massa ultricies mi quis hendrerit</li>
-                        </ul>
-                        <a href="#" class="get-started-btn">Get Started</a>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Pricing Section -->
+        </section>End Testimonials Section
 
         <!-- ======= Frequently Asked Questions Section ======= -->
         <section id="faq" class="faq section-bg">
@@ -563,7 +478,7 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Appland</h3>
+                        <h3>Kantongku</h3>
                         <p>
                             A108 Adam Street <br>
                             New York, NY 535022<br>
