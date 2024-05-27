@@ -12,7 +12,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="iconModalLabel">Select your favorite icon</h1>
+                    <h1 class="modal-title fs-5" id="iconModalLabel">choose your favorite icon</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body d-flex flex-wrap justify-content-center gap-2">
@@ -40,8 +40,6 @@
             width: 4rem !important;
         }
     </style>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     @isset($category)
         <script>
