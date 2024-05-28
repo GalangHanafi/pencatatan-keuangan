@@ -1,8 +1,9 @@
-<footer class="main-footer">
+<footer class="main-footer container-fluid pt-2">
     <div class="row">
         <div class="col-md-4">
             <h5><i class="ti ti-comet"></i> Tentang Kami</h5>
-            <p>Empower Your Financial Insights With Our Intuitive Accounting System - Simplifying Complexity,
+            <p>Empower Your Financial Insights With Our Intuitive Accounting System - Simplifying
+                Complexity,
                 Maximizing Efficiency.</p>
         </div>
         <div class="col-md-4">
@@ -29,13 +30,3 @@
         </div>
     </div>
 </footer>
-
-<script src="{{ asset('admin/src/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('admin/src/assets/js/sidebarmenu.js') }}"></script>
-<script src="{{ asset('admin/src/assets/js/app.min.js') }}"></script>
-<script src="{{ asset('admin/src/assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-<script src="{{ asset('admin/src/assets/libs/simplebar/dist/simplebar.js') }}"></script>
-<script src="{{ asset('admin/src/assets/js/dashboard.js') }}"></script>
-</body>
-
-</html>
