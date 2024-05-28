@@ -24,7 +24,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 // guest
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 // check icon
 Route::get('/icon', [IconController::class, 'index']);
