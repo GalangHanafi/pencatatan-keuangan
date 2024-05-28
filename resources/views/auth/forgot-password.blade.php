@@ -8,8 +8,9 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('admin/src/assets/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('admin/src/assets/css/styles.min.css') }}" />
 </head>
+
 <body>
-<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
         data-sidebar-position="fixed" data-header-position="fixed">
         <div
             class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
@@ -23,19 +24,22 @@
                                         alt="">
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
-          <form method="post" action="{{route('password.email')}}" class="card-body px-5">
-            @csrf
-            <p class="card-text py-2">
-              Enter your email address and we'll send you an email with instructions to reset your password.
-            </p>
-            <div data-mdb-input-init class="form-outline">
-              <label class="form-label" for="typeEmail">Email input</label>
-              <input type="email" id="typeEmail" name="email" class="form-control my-3" />
-              <x-input-error :messages="$errors->get('email')" class="mt-2" />
-            </div>
-            <button type="submit" data-mdb-ripple-init class="btn btn-primary w-100">Reset password</button>
-        </form>
-        </div>
+                                <form method="post" action="{{ route('password.email') }}" class="card-body px-5">
+                                    @csrf
+                                    <p class="card-text py-2">
+                                        Enter your email address and we'll send you an email with instructions to reset
+                                        your password.
+                                    </p>
+                                    <x-auth-session-status class="mb-4" :status="session('status')" />
+                                    <div data-mdb-input-init class="form-outline">
+                                        <label class="form-label" for="typeEmail">Email input</label>
+                                        <input type="email" id="typeEmail" name="email" class="form-control my-3" />
+                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                    </div>
+                                    <button type="submit" data-mdb-ripple-init class="btn btn-primary w-100">Reset
+                                        password</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
