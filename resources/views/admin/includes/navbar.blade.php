@@ -24,6 +24,7 @@
                             <img src="{{ asset(auth()->user()->photo) }}" alt="" width="35" height="35"
                                 class="rounded-circle">
                         </div>
+                        
                         {{-- dropdown menu --}}
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                             <div class="message-body">
