@@ -24,13 +24,13 @@
                                         alt="">
                                 </a>
                                 <p class="text-center">Your Social Campaigns</p>
-                                <form method="post" action="{{ route('password.email') }}" class="card-body px-5">
+                                <p class="card-text py-2">
+                                    Enter your email address and we'll send you an email with instructions to reset
+                                    your password.
+                                </p>
+                                <x-auth-session-status class="mb-4" :status="session('status')" />
+                                <form method="post" action="{{ route('password.email') }}">
                                     @csrf
-                                    <p class="card-text py-2">
-                                        Enter your email address and we'll send you an email with instructions to reset
-                                        your password.
-                                    </p>
-                                    <x-auth-session-status class="mb-4" :status="session('status')" />
                                     <div data-mdb-input-init class="form-outline">
                                         <label class="form-label" for="typeEmail">Email input</label>
                                         <input type="email" id="typeEmail" name="email" class="form-control my-3" />
