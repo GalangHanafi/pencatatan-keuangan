@@ -49,7 +49,7 @@
                 <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             </div>
 
-            <nav id="navbar" class="navbar">    
+            <nav id="navbar" class="navbar">
                 <ul>
                     <!-- jika sudah login-->
                     @if (Auth::check())
@@ -293,7 +293,7 @@
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">Bagaimana cara mendaftar di KantongKu? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
                                 <p>
-                                Anda bisa mendaftar dengan mengunduh aplikasi KantongKu dari Google Play Store atau App Store, kemudian mengikuti langkah-langkah pendaftaran yang tersedia di aplikasi.
+                                    Anda bisa mendaftar dengan mengunduh aplikasi KantongKu dari Google Play Store atau App Store, kemudian mengikuti langkah-langkah pendaftaran yang tersedia di aplikasi.
                                 </p>
                             </div>
                         </li>
@@ -302,7 +302,7 @@
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">Apakah KantongKu gratis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                                 <p>
-                                Ya, KantongKu menawarkan fitur dasar secara gratis. Namun, kami juga menyediakan versi Premium dengan fitur tambahan yang bisa diakses dengan biaya berlangganan.
+                                    Ya, KantongKu menawarkan fitur dasar secara gratis. Namun, kami juga menyediakan versi Premium dengan fitur tambahan yang bisa diakses dengan biaya berlangganan.
                                 </p>
                             </div>
                         </li>
@@ -311,7 +311,7 @@
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">Bagaimana cara mencatat pengeluaran dan pemasukan? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
                                 <p>
-                                Setelah masuk ke dalam aplikasi, Anda bisa menambahkan transaksi baru dengan menekan tombol "Tambah Transaksi". Isi detail transaksi seperti jumlah, kategori, dan tanggal, lalu simpan.
+                                    Setelah masuk ke dalam aplikasi, Anda bisa menambahkan transaksi baru dengan menekan tombol "Tambah Transaksi". Isi detail transaksi seperti jumlah, kategori, dan tanggal, lalu simpan.
                                 </p>
                             </div>
                         </li>
@@ -320,7 +320,7 @@
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">Apakah data saya aman di KantongKu?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
                                 <p>
-                                Kami menggunakan enkripsi tingkat tinggi untuk melindungi data Anda. Privasi dan keamanan data pengguna adalah prioritas utama kami.
+                                    Kami menggunakan enkripsi tingkat tinggi untuk melindungi data Anda. Privasi dan keamanan data pengguna adalah prioritas utama kami.
                                 </p>
                             </div>
                         </li>
@@ -329,7 +329,7 @@
                             <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">Bagaimana cara mengatur anggaran bulanan? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                             <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
                                 <p>
-                                Anda bisa mengatur anggaran dengan masuk ke menu "Budgeting" di aplikasi. Tambahkan kategori anggaran yang ingin Anda kelola, tetapkan batas anggaran, dan pantau pengeluaran Anda agar tetap sesuai dengan anggaran.
+                                    Anda bisa mengatur anggaran dengan masuk ke menu "Budgeting" di aplikasi. Tambahkan kategori anggaran yang ingin Anda kelola, tetapkan batas anggaran, dan pantau pengeluaran Anda agar tetap sesuai dengan anggaran.
                                 </p>
                             </div>
                         </li>
@@ -346,7 +346,6 @@
 
                 <div class="section-title">
                     <h2>Contact</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
                 </div>
 
                 <div class="row">
@@ -407,62 +406,36 @@
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Kantongku</h3>
-                        <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
-                        <ul>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Social Networks</h4>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                        <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                        </div>
-                    </div>
-
-                </div>
+    <footer class="main-footer container-fluid pt-4 pb-4" style="background-color: #f8f9fa;">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h5 style="font-weight: bold;"><i class="ti ti-comet"></i> Tentang Kami</h5>
+                <p>Empower Your Financial Insights With Our Intuitive Accounting System - Simplifying Complexity, Maximizing Efficiency.</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5 style="font-weight: bold;"><i class="ti ti-mailbox"></i> Kontak</h5>
+                <ul style="list-style: none; padding: 0;">
+                    <li><i class="ti ti-mail"></i> Email: <a href="mailto:tes@accountingsystem.com" style="text-decoration: none; color: #007bff;">tes@accountingsystem.com</a></li>
+                    <li><i class="ti ti-phone"></i> Telepon: <a href="tel:+621234567890" style="text-decoration: none; color: #007bff;">+62 123 456 7890</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h5 style="font-weight: bold;"><i class="ti ti-world"></i> Sosial Media</h5>
+                <ul style="list-style: none; padding: 0;">
+                    <li><i class="ti ti-brand-facebook"></i> <a href="#" style="text-decoration: none; color: #007bff;">Facebook</a></li>
+                    <li><i class="ti ti-brand-twitter"></i> <a href="#" style="text-decoration: none; color: #007bff;">Twitter</a></li>
+                    <li><i class="ti ti-brand-instagram"></i> <a href="#" style="text-decoration: none; color: #007bff;">Instagram</a></li>
+                </ul>
             </div>
         </div>
-
-        <div class="container py-4">
-            <div class="copyright">
-                &copy; Copyright <strong><span>KantongKu © 2024. Semua Hak Cipta Dilindungi.</span></strong>. All Rights Reserved
-            </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/ -->
-
+        <hr>
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>&copy; 2024 Accounting System. Semua hak dilindungi.</p>
             </div>
         </div>
-    </footer><!-- End Footer -->
+    </footer>
+    <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
