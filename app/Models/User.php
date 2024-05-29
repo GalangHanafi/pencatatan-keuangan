@@ -144,4 +144,14 @@ class User extends Authenticatable implements MustVerifyEmail
             $this->categories()->create(array_merge($income, ['type' => 'income', 'is_default' => true]));
         }
     }
+
+    // create default account "Cash"
+    public function createDefaultAccount()
+    {
+        $this->accounts()->create([
+            'name' => 'Cash',
+            'icon' => 'ti ti-cash',
+            'is_default' => true
+        ]);
+    }
 }

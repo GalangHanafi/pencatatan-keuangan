@@ -20,13 +20,8 @@ class User2Seeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        // make account for this user named cash
-        $user->accounts()->create([
-            'name' => 'user2 Cash',
-            'balance' => 2000,
-            'icon' => 'ti ti-cash',
-        ]);
-
+        // make default account and default categories for this user
+        $user->createDefaultAccount();
         $user->createDefaultCategories();
 
         // make custom category for this user

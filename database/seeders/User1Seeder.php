@@ -21,16 +21,11 @@ class User1Seeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        // make account for this user named cash
-        $user->accounts()->create([
-            'name' => 'user1 Cash',
-            'balance' => 1000,
-            'icon' => 'ti ti-cash',
-        ]);
-
         // verify email
         DB::table('users')->where('email', 'user1@example.com')->update(['email_verified_at' => now()]);
 
+        // make default account and default categories for this user
+        $user->createDefaultAccount();
         $user->createDefaultCategories();
 
         // make custom category for this user
