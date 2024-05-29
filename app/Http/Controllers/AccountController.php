@@ -15,7 +15,8 @@ class AccountController extends Controller
     public function index()
     {
         // current user
-        $user = User::find(auth()->user()->id);
+        $userId = auth()->user()->id;
+        $user = User::find($userId);
 
         $data = [
             'title' => 'Account',
@@ -153,16 +154,20 @@ class AccountController extends Controller
             $transactionType = 'income';
             $transactionDescription = 'Add ' . $data['balance'] - $account->balance . ' to ' . $data['name'];
             $transactionAmount = $data['balance'] - $account->balance;
+            // get income other category
+            $transactionCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
         } else {
             $transactionType = 'expense';
             $transactionDescription = 'Subtract ' . $account->balance - $data['balance'] . ' from ' . $data['name'];
             $transactionAmount = $account->balance - $data['balance'];
+            // get expense other category
+            $transactionCategory = $user->categories()->where('type', 'expense')->where('name', 'Other')->first();
         }
 
         // create transaction for updated account
         $user->transactions()->create([
             'account_id' => $account->id,
-            'category_id' => $account->category_id,
+            'category_id' => $transactionCategory->id,
             'name' => 'Update ' . $data['name'] . ' Account',
             'description' => $transactionDescription,
             'type' => $transactionType,
@@ -187,7 +192,9 @@ class AccountController extends Controller
             abort(403);
         }
 
+        // delete account
         $account->delete();
+
         return redirect()->route('account.index');
     }
 }
