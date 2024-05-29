@@ -27,11 +27,14 @@ class User2Seeder extends Seeder
             'icon' => 'ti ti-cash',
         ]);
 
+        $user->createDefaultCategories();
+
         // make custom category for this user
         foreach (range(1, 5) as $i) {
             $user->categories()->create([
                 'name' => 'user1 Custom Category ' . $i,
                 'icon' => 'ti ti-tag',
+                'type' => 'expense',
             ]);
         }
     }

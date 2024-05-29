@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description');
-            $table->enum('type', ['income', 'outcome', 'saving']);
+            $table->enum('type', ['income', 'expense', 'saving']);
             $table->decimal('amount');
             $table->date('date');
 

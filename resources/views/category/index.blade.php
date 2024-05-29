@@ -23,6 +23,9 @@
                             <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Type</h6>
+                        </th>
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Action</h6>
                         </th>
                     </tr>
@@ -39,6 +42,9 @@
                             </td>
                             <td class="border-bottom-0">
                                 <p class="mb-0 fw-normal">{{ $customCategory->name }}</p>
+                            </td>
+                            <td class="border-bottom-0">
+                                <p class="mb-0 fw-normal text-capitalize">{{ $customCategory->type }}</p>
                             </td>
                             <td class="border-bottom-0">
                                 {{-- edit button --}}
@@ -115,6 +121,9 @@
                             <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Type</h6>
+                        </th>
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0"></h6>
                         </th>
                     </tr>
@@ -131,6 +140,9 @@
                             </td>
                             <td class="border-bottom-0">
                                 <p class="mb-0 fw-normal">{{ $defaultCategory->name }}</p>
+                            </td>
+                            <td class="border-bottom-0">
+                                <p class="mb-0 fw-normal text-capitalize">{{ $defaultCategory->type }}</p>
                             </td>
                             <td class="border-bottom-0"></td>
                         </tr>

@@ -18,8 +18,8 @@ class CategoryController extends Controller
         $userId = auth()->user()->id;
         $user = User::find($userId);
 
-        $customCategories = $user->categories()->get();
-        $defaultCategories = Category::where('user_id', null)->get();
+        $customCategories = $user->categories()->where('is_default', 0)->get();
+        $defaultCategories = $user->categories()->where('is_default', 1)->get();
 
         $data = [
             'title' => 'Category',
@@ -65,6 +65,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'required|string',
+            'type' => 'in:income,expense,saving',
         ]);
 
         // create category
@@ -127,6 +128,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'icon' => 'required|string',
+            'type' => 'in:income,expense,saving',
         ]);
 
         // update category
