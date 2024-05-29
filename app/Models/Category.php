@@ -14,6 +14,8 @@ class Category extends Model
         'user_id',
         'name',
         'icon',
+        'type', // ['income', 'expense', 'saving']
+        'is_default',
     ];
 
     // relationship between category and user (one user has many categories)

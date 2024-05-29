@@ -12,6 +12,17 @@
                     <input type="text" class="form-control" name="name" id="name" required>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
+
+                <div class="mb-3">
+                    <label for="type" class="form-label">Category Type</label>
+                    <select name="type" class="form-select">
+                        <option value="" disabled selected>Choose Type</option>
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                        <option value="saving">Saving</option>
+                    </select>
+                    <x-input-error :messages="$errors->get('type')" class="mt-2" />
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>

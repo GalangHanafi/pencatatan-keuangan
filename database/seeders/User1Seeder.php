@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class User1Seeder extends Seeder
 {
@@ -27,11 +28,17 @@ class User1Seeder extends Seeder
             'icon' => 'ti ti-cash',
         ]);
 
+        // verify email
+        DB::table('users')->where('email', 'user1@example.com')->update(['email_verified_at' => now()]);
+
+        $user->createDefaultCategories();
+
         // make custom category for this user
         foreach (range(1, 5) as $i) {
             $user->categories()->create([
                 'name' => 'user1 Custom Category ' . $i,
                 'icon' => 'ti ti-tag',
+                'type' => 'expense',
             ]);
         }
     }

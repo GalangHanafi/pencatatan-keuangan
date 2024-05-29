@@ -16,7 +16,7 @@ class Transaction extends Model
         'category_id',
         'name',
         'description',
-        'type',
+        'type', // ['income', 'expense', 'saving']
         'amount',
         'date',
     ];
