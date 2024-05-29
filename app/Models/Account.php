@@ -15,6 +15,7 @@ class Account extends Model
         'name',
         'balance',
         'icon',
+        'is_default',
     ];
 
     // relation between account and user (one user has many accounts)

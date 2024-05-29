@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-
             // relations with user
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
             $table->string('name');
             $table->decimal('balance')->default(0.00);
             $table->string('icon');
-            $table->timestamps();
+            $table->boolean('is_default')->default(false);
 
+            $table->timestamps();
             // soft delete
             $table->softDeletes();
         });
