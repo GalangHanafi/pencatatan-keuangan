@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('icon');
+            $table->enum('type', ['income', 'expense', 'saving']);
+            $table->boolean('is_default')->default(false);
 
             $table->timestamps();
 
