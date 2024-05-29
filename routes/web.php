@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
 
 // verified
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('category', CategoryController::class);
-    Route::resource('account', AccountController::class);
+    Route::resource('category', CategoryController::class)->except(['show']);
+    Route::resource('account', AccountController::class)->except(['show']);
 });
 require __DIR__ . '/auth.php';
