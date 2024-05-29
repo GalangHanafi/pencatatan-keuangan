@@ -62,10 +62,30 @@ class AccountController extends Controller
         }
 
         // validation
+        $data = $request->validate([
+            'name' => 'required|string',
+            'balance' => 'required|numeric|min:0',
+            'icon' => 'required|string',
+        ]);
 
         // create account
+        $account = $user->accounts()->create($data);
 
-        // return redirect()->to('account')->with('success', 'Account created successfully!');
+        // get income other category
+        $incomeOtherCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
+
+        // create transaction
+        $user->transactions()->create([
+            'account_id' => $account->id,
+            'category_id' => $incomeOtherCategory->id,
+            'name' => 'Initial Balance',
+            'description' => 'Initial Balance for ' . $data['name'],
+            'type' => 'income',
+            'amount' => $data['balance'],
+            'date' => date('Y-m-d'),
+        ]);
+
+        return redirect()->to('account.index')->with('success', 'Account created successfully!');
     }
 
     /**
@@ -119,10 +139,38 @@ class AccountController extends Controller
         }
 
         // validation
+        $data = $request->validate([
+            'name' => 'required|string',
+            'balance' => 'required|numeric|min:0',
+            'icon' => 'required|string',
+        ]);
 
         // update account
+        $account->update($data);
 
-        // return redirect()->to('account')->with('success', 'Account updated successfully!');
+        // check if balance is added or subtracted
+        if ($data['balance'] > $account->balance) {
+            $transactionType = 'income';
+            $transactionDescription = 'Add ' . $data['balance'] - $account->balance . ' to ' . $data['name'];
+            $transactionAmount = $data['balance'] - $account->balance;
+        } else {
+            $transactionType = 'expense';
+            $transactionDescription = 'Subtract ' . $account->balance - $data['balance'] . ' from ' . $data['name'];
+            $transactionAmount = $account->balance - $data['balance'];
+        }
+
+        // create transaction for updated account
+        $user->transactions()->create([
+            'account_id' => $account->id,
+            'category_id' => $account->category_id,
+            'name' => 'Update ' . $data['name'] . ' Account',
+            'description' => $transactionDescription,
+            'type' => $transactionType,
+            'amount' => $transactionAmount,
+            'date' => date('Y-m-d'),
+        ]);
+
+        return redirect()->to('account.index')->with('success', 'Account updated successfully!');
     }
 
     /**
