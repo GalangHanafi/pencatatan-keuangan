@@ -131,9 +131,9 @@ class AccountController extends Controller
         $user = User::find($userId);
 
         // authorization
-        if ($user->id !== $request->user_id) {
-            abort(403);
-        }
+        if ($user->id !== $account->user->id) {
+        abort(403);
+        };
 
         // validation
         $data = $request->validate([
@@ -171,7 +171,7 @@ class AccountController extends Controller
             'date' => date('Y-m-d'),
         ]);
 
-        return redirect()->to('account.index')->with('success', 'Account updated successfully!');
+        return redirect()->route('account.index')->with('success', 'Account updated successfully!');
     }
 
     /**
