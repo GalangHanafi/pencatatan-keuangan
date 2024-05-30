@@ -14,9 +14,7 @@ class TransactionController extends Controller
     public function index()
     {
         // logged in user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
-
+        $user = auth()->user();
 
         // get all transactions for logged in user, ordered by most recent
         $transactions = $user->transactions->sortBy('date');
@@ -78,9 +76,8 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        // logged in user
+        $user = auth()->user();
 
         // authorize user
         if ($user->id !== $transaction->user_id) {
