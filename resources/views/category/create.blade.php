@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
-        <form action="{{ url('category') }}" method="POST">
+        <form action="{{ route('category.store') }}" method="POST">
             @csrf
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <x-icon-select-modal :$icons />
