@@ -132,7 +132,7 @@ class AccountController extends Controller
 
         // authorization
         if ($user->id !== $account->user_id) {
-        abort(403);
+            abort(403);
         };
 
         // validation
@@ -143,7 +143,15 @@ class AccountController extends Controller
         ]);
 
         // update account
-        $account->update($data);
+        $account->update([
+            'name' => $data['name'],
+            'icon' => $data['icon'],
+        ]);
+
+        // if balance is not added or subtracted then do nothing
+        if ($data['balance'] === $account->balance) {
+            return redirect()->route('account.index')->with('success', 'Account updated successfully!');
+        }
 
         // check if balance is added or subtracted
         if ($data['balance'] > $account->balance) {
@@ -169,6 +177,11 @@ class AccountController extends Controller
             'type' => $transactionType,
             'amount' => $transactionAmount,
             'date' => date('Y-m-d'),
+        ]);
+
+        // update balance
+        $account->update([
+            'balance' => $data['balance'],
         ]);
 
         return redirect()->route('account.index')->with('success', 'Account updated successfully!');

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\IconController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -41,5 +42,6 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('category', CategoryController::class)->except(['show']);
     Route::resource('account', AccountController::class)->except(['show']);
+    Route::resource('transaction', TransactionController::class)->except(['show']);
 });
 require __DIR__ . '/auth.php';
