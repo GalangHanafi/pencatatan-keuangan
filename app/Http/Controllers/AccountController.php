@@ -57,7 +57,7 @@ class AccountController extends Controller
         $userId = auth()->user()->id;
         $user = User::find($userId);
 
-      
+
         // validation
         $data = $request->validate([
             'name' => 'required|string',
@@ -171,7 +171,7 @@ class AccountController extends Controller
             'date' => date('Y-m-d'),
         ]);
 
-        return redirect()->to('account.index')->with('success', 'Account updated successfully!');
+        return redirect()->route('account.index')->with('success', 'Account updated successfully!');
     }
 
     /**
