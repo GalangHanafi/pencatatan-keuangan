@@ -8,5 +8,5 @@
 <script>
     setTimeout(() => {
         $('#alert').fadeOut()
-    }, 2000);
+    }, 5000);
 </script>
