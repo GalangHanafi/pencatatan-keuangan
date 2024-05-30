@@ -57,11 +57,7 @@ class AccountController extends Controller
         $userId = auth()->user()->id;
         $user = User::find($userId);
 
-        // authorization
-        if ($user->id !== $request->user_id) {
-            abort(403);
-        }
-
+      
         // validation
         $data = $request->validate([
             'name' => 'required|string',
@@ -86,7 +82,7 @@ class AccountController extends Controller
             'date' => date('Y-m-d'),
         ]);
 
-        return redirect()->to('account.index')->with('success', 'Account created successfully!');
+        return redirect()->route('account.index')->with('success', 'Account created successfully!');
     }
 
     /**
