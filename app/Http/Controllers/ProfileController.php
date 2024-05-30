@@ -16,9 +16,14 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        // current user
+
+        $data = [
+            'title'         => 'Profile',
+            'user'          => auth()->user(),
+            'content'       => 'profile.edit',
+        ];
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
