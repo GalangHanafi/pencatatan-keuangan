@@ -36,7 +36,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -44,7 +44,19 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // loged in user
+
+        // authorize user
+
+        // if type is income, add account balance
+
+        // if type is expense, subtract account balance
+
+        // update account balance
+
+        // create transaction
+
+        // redirect to transaction index
     }
 
     /**
@@ -68,7 +80,19 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        // loged in user
+
+        // authorize user
+
+        // if type is income, add account balance
+
+        // if type is expense, subtract account balance
+
+        // update account balance
+
+        // update transaction
+
+        // redirect to transaction index
     }
 
     /**
@@ -84,22 +108,20 @@ class TransactionController extends Controller
             abort(403);
         }
 
-        // get transaction account
-        $transactionAccount = $user->accounts->where('id', $transaction->account_id)->first();
-
-        // Calculate updated balance based on transaction type
-        // if type is income, subtract from user's balance
+        // get account where transaction belongs
+        $account = $user->accounts->where('id', $transaction->account_id)->first();
+        // if type is income, subtract account balance
         if ($transaction->type === 'income') {
-            $updatedAccount = $transactionAccount->balance - $transaction->amount;
+            $updatedBalance = $account->balance - $transaction->amount;
         }
-        // if type is expense, add to user's balance
+        // if type is expense, add account balance
         if ($transaction->type === 'expense') {
-            $updatedAccount = $transactionAccount->balance + $transaction->amount;
+            $updatedBalance = $account->balance + $transaction->amount;
         }
 
         // update transaction account
-        $transactionAccount->update([
-            'balance' => $updatedAccount
+        $account->update([
+            'balance' => $updatedBalance
         ]);
 
         // delete transaction
