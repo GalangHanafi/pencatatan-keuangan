@@ -20,6 +20,9 @@ class ProfileController extends Controller
 
         $data = [
             'title'         => 'Profile',
+            'breadcrumbs'    => [
+                'Profile' => '#',
+            ],
             'user'          => auth()->user(),
             'content'       => 'profile.edit',
         ];
