@@ -87,11 +87,11 @@ class TransactionController extends Controller
         // get transaction account
         $transactionAccount = $user->accounts->where('id', $transaction->account_id)->first();
 
+        // Calculate updated balance based on transaction type
         // if type is income, subtract from user's balance
         if ($transaction->type === 'income') {
             $updatedAccount = $transactionAccount->balance - $transaction->amount;
         }
-
         // if type is expense, add to user's balance
         if ($transaction->type === 'expense') {
             $updatedAccount = $transactionAccount->balance + $transaction->amount;
