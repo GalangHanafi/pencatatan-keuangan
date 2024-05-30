@@ -41,11 +41,11 @@
         }
     </style>
 
-    @isset($category)
+    @isset($selected)
         <script>
             // Set the selected icon from the database on page load
             $('.icon-input').each(function() {
-                if ($(this).val() == "{{ $category->icon }}") {
+                if ($(this).val() == "{{ $selected->icon }}") {
                     $(this).prop('checked', true);
                     $(this).closest('.icon-container').addClass('border-primary').removeClass(
                         'bg-body-tertiary');

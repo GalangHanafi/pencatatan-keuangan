@@ -131,7 +131,7 @@ class AccountController extends Controller
         $user = User::find($userId);
 
         // authorization
-        if ($user->id !== $account->user->id) {
+        if ($user->id !== $account->user_id) {
         abort(403);
         };
 

@@ -5,7 +5,7 @@
             @csrf
             @method('PUT')
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <x-icon-select-modal :$icons :$category />
+                <x-icon-select-modal :$icons :selected="$category" />
                 <x-input-error :messages="$errors->get('icon')" class="text-center" />
 
                 <div class="mb-3">

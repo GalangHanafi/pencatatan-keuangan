@@ -13,7 +13,7 @@ class IconSelectModal extends Component
      */
     public function __construct(
         public $icons,
-        public $category = null
+        public $selected = null
     )
     {
         //
