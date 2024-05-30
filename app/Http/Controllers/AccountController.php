@@ -20,7 +20,7 @@ class AccountController extends Controller
 
         $data = [
             'title' => 'Account',
-            'breadcrumb' => [
+            'breadcrumbs' => [
                 'Account' => '#',
             ],
             'accounts' => $user->accounts()->get(),
@@ -37,7 +37,7 @@ class AccountController extends Controller
     {
         $data = [
             'title' => 'Create Account',
-            'breadcrumb' => [
+            'breadcrumbs' => [
                 'Account' => route('account.index'),
                 'Create' => '#',
             ],
@@ -109,7 +109,7 @@ class AccountController extends Controller
 
         $data = [
             'title' => 'Edit Account',
-            'breadcrumb' => [
+            'breadcrumbs' => [
                 'Account' => route('account.index'),
                 'Edit' => '#',
             ],
