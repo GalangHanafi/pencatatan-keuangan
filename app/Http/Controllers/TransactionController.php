@@ -82,26 +82,28 @@ class TransactionController extends Controller
         $userId = auth()->user()->id;
         $user = User::find($userId);
 
-        // get transaction account
-        $transactionAccount = $user->accounts->where('id', $transaction->account_id)->first();
-
         // authorize user
         if ($user->id !== $transaction->user_id) {
             abort(403);
         }
-        // if type is income, update user's balance
+
+        // get transaction account
+        $transactionAccount = $user->accounts->where('id', $transaction->account_id)->first();
+
+        // if type is income, subtract from user's balance
         if ($transaction->type === 'income') {
             $updatedAccount = $transactionAccount->balance - $transaction->amount;
         }
 
-        // if type is expense, update user's balance
+        // if type is expense, add to user's balance
         if ($transaction->type === 'expense') {
             $updatedAccount = $transactionAccount->balance + $transaction->amount;
         }
 
         // update transaction account
-        $transactionAccount->balance = $updatedAccount;
-        $transactionAccount->save();
+        $transactionAccount->update([
+            'balance' => $updatedAccount
+        ]);
 
         // delete transaction
         $transaction->delete();
