@@ -71,7 +71,7 @@ class CategoryController extends Controller
         // create category
         $user->categories()->create($data);
 
-        return redirect()->to('category')->with('success', 'Category created successfully!');
+        return redirect()->route('category.index')->with('success', 'Category created successfully!');
     }
 
     /**
@@ -134,7 +134,7 @@ class CategoryController extends Controller
         // update category
         $category->update($data);
 
-        return redirect()->to('category')->with('success', 'Category updated successfully!');
+        return redirect()->route('category.index')->with('success', 'Category updated successfully!');
     }
 
 
