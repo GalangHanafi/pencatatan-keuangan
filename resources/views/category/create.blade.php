@@ -19,7 +19,7 @@
                         <option value="" disabled selected>Choose Type</option>
                         <option value="expense">Expense</option>
                         <option value="income">Income</option>
-                        <option value="saving">Saving</option>
+                        {{-- <option value="saving">Saving</option> --}}
                     </select>
                     <x-input-error :messages="$errors->get('type')" class="mt-2" />
                 </div>

@@ -21,7 +21,7 @@
                         <option value="" disabled>Choose Type</option>
                         <option value="expense" {{ $category->type == 'expense' ? 'selected' : ''}}>Expense</option>
                         <option value="income" {{ $category->type == 'income' ? 'selected' : ''}}>Income</option>
-                        <option value="saving" {{ $category->type == 'saving' ? 'selected' : ''}}>Saving</option>
+                        {{-- <option value="saving" {{ $category->type == 'saving' ? 'selected' : ''}}>Saving</option> --}}
                     </select>
                     <x-input-error :messages="$errors->get('type')" class="mt-2" />
                 </div>
