@@ -18,7 +18,7 @@ class TransactionController extends Controller
         $user = User::find($user->id);
 
         // get all transactions for logged in user, ordered by most recent
-        $transactions = $user->transactions->sortBy('date');
+        $transactions = $user->transactions->sortByDesc('date');
 
         $data = [
             'title' => 'Transaction',
@@ -53,8 +53,8 @@ class TransactionController extends Controller
             'account_id' => 'required',
             'category_id' => 'required',
             'name' => 'required',
-            'description' => 'string',
-            'type' => 'in:income,expense',
+            'description' => 'nullable|string',
+            'type' => 'required|in:income,expense',
             'amount' => 'required|numeric|min:0',
             'date' => 'required|date',
         ]);
@@ -68,12 +68,12 @@ class TransactionController extends Controller
 
         // if type is income, add account balance, else subtract account balance
         if ($data['type'] === 'income') {
-            $newAccountBalance = $account->balance + $data['amount'];
+            $account->balance += $data['amount'];
         } else {
-            $newAccountBalance = $account->balance - $data['amount'];
+            $account->balance -= $data['amount'];
         }
         $account->update([
-            'balance' => $newAccountBalance
+            'balance' => $account->balance
         ]);
 
         // create transaction
@@ -171,18 +171,22 @@ class TransactionController extends Controller
 
         // get account where transaction belongs
         $account = $user->accounts->where('id', $transaction->account_id)->first();
+        if (!$account) {
+            return redirect()->route('transaction.index')->with('error', 'Account not found!');
+        }
+
         // if type is income, subtract account balance
         if ($transaction->type === 'income') {
-            $updatedBalance = $account->balance - $transaction->amount;
+            $account->balance -= $transaction->amount;
         }
         // if type is expense, add account balance
         if ($transaction->type === 'expense') {
-            $updatedBalance = $account->balance + $transaction->amount;
+            $account->balance += $transaction->amount;
         }
 
         // update transaction account
         $account->update([
-            'balance' => $updatedBalance
+            'balance' => $account->balance
         ]);
 
         // delete transaction
