@@ -104,7 +104,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        // loged in user
+        // logged in user
         $user = auth()->user();
         $user = User::find($user->id);
 
@@ -126,27 +126,34 @@ class TransactionController extends Controller
             return redirect()->back()->with('error', 'Account or Category not found!');
         }
 
-        // Update account balance based on transaction type and amount change
-        if ($transaction->type == 'income') {
-            $account->balance -= $transaction->amount;
+        // logic for updating account balance
+        $originalAmount = $transaction->amount;
+        $originalType = $transaction->type;
+
+        // Reverse the original transaction effect
+        if ($originalType === 'income') {
+            $account->balance -= $originalAmount;
         } else {
-            $account->balance += $transaction->amount;
+            $account->balance += $originalAmount;
         }
 
-        if ($data['type'] == 'income') {
+        // Apply the new transaction effect
+        if ($data['type'] === 'income') {
             $account->balance += $data['amount'];
         } else {
             $account->balance -= $data['amount'];
         }
 
         // Save the updated account balance
-        $account->save();
+        $account->update([
+            'balance' => $account->balance
+        ]);
 
         // update transaction
         $transaction->update($data);
 
         // redirect to transaction index
-        return redirect()->route('transaction.index')->with('success', 'Transaction created successfully!');
+        return redirect()->route('transaction.index')->with('success', 'Transaction updated successfully!');
     }
 
     /**
