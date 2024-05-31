@@ -15,8 +15,8 @@ class AccountController extends Controller
     public function index()
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
         $data = [
             'title' => 'Account',
@@ -54,8 +54,8 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
 
         // validation
@@ -99,8 +99,8 @@ class AccountController extends Controller
     public function edit(Account $account)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
@@ -127,8 +127,8 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
@@ -142,7 +142,7 @@ class AccountController extends Controller
             'icon' => 'required|string',
         ]);
 
-        // update account
+        // update account [name, icon]
         $account->update([
             'name' => $data['name'],
             'icon' => $data['icon'],
@@ -158,13 +158,13 @@ class AccountController extends Controller
             $transactionType = 'income';
             $transactionDescription = 'Add ' . $data['balance'] - $account->balance . ' to ' . $data['name'];
             $transactionAmount = $data['balance'] - $account->balance;
-            // get income other category
+            // transactionCategory will be "income other"
             $transactionCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
         } else {
             $transactionType = 'expense';
             $transactionDescription = 'Subtract ' . $account->balance - $data['balance'] . ' from ' . $data['name'];
             $transactionAmount = $account->balance - $data['balance'];
-            // get expense other category
+            // transactionCategory will be "expense other"
             $transactionCategory = $user->categories()->where('type', 'expense')->where('name', 'Other')->first();
         }
 
@@ -179,7 +179,7 @@ class AccountController extends Controller
             'date' => date('Y-m-d'),
         ]);
 
-        // update balance
+        // update account [balance]
         $account->update([
             'balance' => $data['balance'],
         ]);
@@ -193,8 +193,8 @@ class AccountController extends Controller
     public function destroy(Account $account)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
