@@ -126,18 +126,21 @@ class TransactionController extends Controller
             return redirect()->back()->with('error', 'Account or Category not found!');
         }
 
-        // if type or amount is changed
-        if ($data['type'] !== $transaction->type || $data['amount'] !== $transaction->amount) {
-            // if type is income, add account balance, else subtract account balance
-            if ($data['type'] === 'income') {
-                $newAccountBalance = $account->balance + $data['amount'];
-            } else {
-                $newAccountBalance = $account->balance - $data['amount'];
-            }
-            $account->update([
-                'balance' => $newAccountBalance
-            ]);
+        // Update account balance based on transaction type and amount change
+        if ($transaction->type == 'income') {
+            $account->balance -= $transaction->amount;
+        } else {
+            $account->balance += $transaction->amount;
         }
+
+        if ($data['type'] == 'income') {
+            $account->balance += $data['amount'];
+        } else {
+            $account->balance -= $data['amount'];
+        }
+
+        // Save the updated account balance
+        $account->save();
 
         // update transaction
         $transaction->update($data);
