@@ -125,12 +125,13 @@ class TransactionController extends Controller
         $data = [
             'title' => 'Transaction',
             'breadcrumbs' => [
-                'Transaction' => "#",
+                'Transaction' => route('transaction.index'),
+                'Edit' => "#",
             ],
             'transaction' => $transaction,
             'categories' => $user->categories,
             'accounts' => $user->accounts,
-            'content' => 'transaction.index',
+            'content' => 'transaction.edit',
         ];
 
         return view("admin.layouts.wrapper", $data);
