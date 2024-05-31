@@ -15,8 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
         $customCategories = $user->categories()->where('is_default', 0)->get();
         $defaultCategories = $user->categories()->where('is_default', 1)->get();
@@ -58,8 +58,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
+        // $user = User::find($user->id);
 
         // validation
         $data = $request->validate([
@@ -88,8 +88,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
 
         // authorization
         if ($user->id !== $category->user_id) {
@@ -116,8 +115,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
 
         // authorization
         if ($user->id !== $category->user_id) {
@@ -144,8 +142,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         // current user
-        $userId = auth()->user()->id;
-        $user = User::find($userId);
+        $user = auth()->user();
 
         // authorization
         if ($user->id !== $category->user_id) {
