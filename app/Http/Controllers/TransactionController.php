@@ -15,6 +15,7 @@ class TransactionController extends Controller
     {
         // logged in user
         $user = auth()->user();
+        $user = User::find($user->id);
 
         // get all transactions for logged in user, ordered by most recent
         $transactions = $user->transactions->sortBy('date');
@@ -36,7 +37,6 @@ class TransactionController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -45,18 +45,42 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         // loged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
 
-        // authorize user
+        // validation
+        $data = $request->validate([
+            'account_id' => 'required',
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'string',
+            'type' => 'in:income,expense',
+            'amount' => 'required|numeric|min:0',
+            'date' => 'required|date',
+        ]);
 
-        // if type is income, add account balance
+        // check account_id and category_id is related to user
+        $account = $user->accounts->find($data['account_id']);
+        $category = $user->categories->find($data['category_id']);
+        if (!$account || !$category) {
+            return redirect()->back()->with('error', 'Account or Category not found!');
+        }
 
-        // if type is expense, subtract account balance
-
-        // update account balance
+        // if type is income, add account balance, else subtract account balance
+        if ($data['type'] === 'income') {
+            $newAccountBalance = $account->balance + $data['amount'];
+        } else {
+            $newAccountBalance = $account->balance - $data['amount'];
+        }
+        $account->update([
+            'balance' => $newAccountBalance
+        ]);
 
         // create transaction
+        $user->transactions()->create($data);
 
         // redirect to transaction index
+        return redirect()->route('transaction.index')->with('success', 'Transaction created successfully!');
     }
 
     /**
@@ -81,18 +105,45 @@ class TransactionController extends Controller
     public function update(Request $request, Transaction $transaction)
     {
         // loged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
 
-        // authorize user
+        // validation
+        $data = $request->validate([
+            'account_id' => 'required',
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'string',
+            'type' => 'in:income,expense',
+            'amount' => 'required|numeric|min:0',
+            'date' => 'required|date',
+        ]);
 
-        // if type is income, add account balance
+        // check account_id and category_id is related to user
+        $account = $user->accounts->find($data['account_id']);
+        $category = $user->categories->find($data['category_id']);
+        if (!$account || !$category) {
+            return redirect()->back()->with('error', 'Account or Category not found!');
+        }
 
-        // if type is expense, subtract account balance
-
-        // update account balance
+        // if type or amount is changed
+        if ($data['type'] !== $transaction->type || $data['amount'] !== $transaction->amount) {
+            // if type is income, add account balance, else subtract account balance
+            if ($data['type'] === 'income') {
+                $newAccountBalance = $account->balance + $data['amount'];
+            } else {
+                $newAccountBalance = $account->balance - $data['amount'];
+            }
+            $account->update([
+                'balance' => $newAccountBalance
+            ]);
+        }
 
         // update transaction
+        $transaction->update($data);
 
         // redirect to transaction index
+        return redirect()->route('transaction.index')->with('success', 'Transaction created successfully!');
     }
 
     /**
