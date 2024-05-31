@@ -37,6 +37,22 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        $data = [
+            'title' => 'Transaction',
+            'breadcrumbs' => [
+                'Transaction' => route('transaction.index'),
+                'Create' => "#",
+            ],
+            'categories' => $user->categories,
+            'accounts' => $user->accounts,
+            'content' => 'transaction.create',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -66,6 +82,7 @@ class TransactionController extends Controller
             return redirect()->back()->with('error', 'Account or Category not found!');
         }
 
+        // logic for updating account balance
         // if type is income, add account balance, else subtract account balance
         if ($data['type'] === 'income') {
             $account->balance += $data['amount'];
@@ -96,7 +113,27 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        // authorize user
+        if ($user->id !== $transaction->user_id) {
+            abort(403);
+        }
+
+        $data = [
+            'title' => 'Transaction',
+            'breadcrumbs' => [
+                'Transaction' => "#",
+            ],
+            'transaction' => $transaction,
+            'categories' => $user->categories,
+            'accounts' => $user->accounts,
+            'content' => 'transaction.index',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -169,7 +206,7 @@ class TransactionController extends Controller
             abort(403);
         }
 
-        // get account where transaction belongs
+        // check account_id is related to user
         $account = $user->accounts->where('id', $transaction->account_id)->first();
         if (!$account) {
             return redirect()->route('transaction.index')->with('error', 'Account not found!');
