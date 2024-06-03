@@ -33,14 +33,6 @@ class TransactionController extends Controller
     }
 
     /**
-     * redirect to transaction.create.expense.
-     */
-    public function create()
-    {
-        return redirect()->route('transaction.create.expense');
-    }
-
-    /**
      * Show the form for creating a a new resource type expense.
      */
     public function createExpense()
@@ -50,17 +42,17 @@ class TransactionController extends Controller
         $user = User::find($user->id);
 
         $data = [
-            'title' => 'Transaction',
+            'title' => 'Create Transaction',
             'breadcrumbs' => [
                 'Transaction' => route('transaction.index'),
                 'Create' => "#",
+                'Expense' => "#",
             ],
             'categories' => $user->categories()->where('type', 'expense')->get(),
             'accounts' => $user->accounts,
             'content' => 'transaction.create.expense',
         ];
 
-        dd($data['categories']);
         return view("admin.layouts.wrapper", $data);
     }
 
@@ -74,17 +66,17 @@ class TransactionController extends Controller
         $user = User::find($user->id);
 
         $data = [
-            'title' => 'Transaction',
+            'title' => 'Create Transaction',
             'breadcrumbs' => [
                 'Transaction' => route('transaction.index'),
                 'Create' => "#",
+                'Income' => "#",
             ],
             'categories' => $user->categories()->where('type', 'income')->get(),
             'accounts' => $user->accounts,
             'content' => 'transaction.create.income',
         ];
 
-        dd($data['categories']);
         return view("admin.layouts.wrapper", $data);
     }
 
@@ -142,37 +134,8 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource type expense.
      */
-    public function edit(Transaction $transaction)
-    {
-        // logged in user
-        $user = auth()->user();
-        $user = User::find($user->id);
-
-        // authorize user
-        if ($user->id !== $transaction->user_id) {
-            abort(403);
-        }
-
-        $data = [
-            'title' => 'Transaction',
-            'breadcrumbs' => [
-                'Transaction' => route('transaction.index'),
-                'Edit' => "#",
-            ],
-            'transaction' => $transaction,
-            'categories' => $user->categories,
-            'accounts' => $user->accounts,
-            'content' => 'transaction.edit',
-        ];
-
-        return view("admin.layouts.wrapper", $data);
-    }
-    /**
-     * Show the form for editing the specified resource.
-     */
-
     public function editExpense(Transaction $transaction)
     {
         // logged in user
@@ -185,10 +148,11 @@ class TransactionController extends Controller
         }
 
         $data = [
-            'title' => 'Transaction',
+            'title' => 'Edit Transaction',
             'breadcrumbs' => [
                 'Transaction' => route('transaction.index'),
                 'Edit' => "#",
+                'Expense' => "#",
             ],
             'transaction' => $transaction,
             'categories' => $user->categories()->where('type', 'expense')->get(),
@@ -213,10 +177,11 @@ class TransactionController extends Controller
         }
 
         $data = [
-            'title' => 'Transaction',
+            'title' => 'Edit Transaction',
             'breadcrumbs' => [
                 'Transaction' => route('transaction.index'),
                 'Edit' => "#",
+                'Income' => "#",
             ],
             'transaction' => $transaction,
             'categories' => $user->categories()->where('type', 'income')->get(),
