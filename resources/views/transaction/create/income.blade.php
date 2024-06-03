@@ -1,11 +1,4 @@
-@include('transaction.create.include.tab')
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
-        {{-- {{ $categories }}
-        {{ $accounts }} --}}
-        <form action="{{ route('transaction.store') }}" method="POST">
-            @csrf
-        </form>
-    </div>
-</div>
+@extends('transaction.create.include.wrapper')
+@section('content')
+<input type="text" name="type" value="income" hidden>
+@endsection
