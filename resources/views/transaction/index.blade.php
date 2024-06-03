@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
-            <a href="{{ route('transaction.create') }}" class="btn btn-primary mb-3">
+            <a href="{{ route('transaction.create.expense') }}" class="btn btn-primary mb-3">
                 <i class="ti ti-plus me-2"></i>
                 Create New
             </a>
@@ -12,16 +12,6 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                        {{--
-                            'account_id',
-                            'category_id',
-                            'name',
-                            'description',
-                            'type', // ['income', 'expense', 'saving']
-                            'amount',
-                            'date',
-                        --}}
-                        {{-- number --}}
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0"></h6>
                         </th>
@@ -84,7 +74,7 @@
                             </td>
                             <td class="border-bottom-0">
                                 {{-- edit button --}}
-                                <a href="{{ route('transaction.edit', $transaction) }}"
+                                <a href="{{ $transaction->type == 'income' ? route('transaction.edit.income', $transaction) : route('transaction.edit.expense', $transaction) }}"
                                     class="btn btn-primary btn-sm">Edit</a>
                                 {{-- delete button --}}
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"

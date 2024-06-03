@@ -42,6 +42,11 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('category', CategoryController::class)->except(['show']);
     Route::resource('account', AccountController::class)->except(['show']);
-    Route::resource('transaction', TransactionController::class)->except(['show']);
+
+    Route::resource('transaction', TransactionController::class)->except(['show', 'edit']);
+    Route::get('/transaction/create/expense', [TransactionController::class, 'createExpense'])->name('transaction.create.expense');
+    Route::get('/transaction/create/income', [TransactionController::class, 'createIncome'])->name('transaction.create.income');
+    Route::get('/transaction/{transaction}/edit/expense', [TransactionController::class, 'editExpense'])->name('transaction.edit.expense');
+    Route::get('/transaction/{transaction}/edit/income', [TransactionController::class, 'editIncome'])->name('transaction.edit.income');
 });
 require __DIR__ . '/auth.php';

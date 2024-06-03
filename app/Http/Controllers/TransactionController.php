@@ -33,9 +33,17 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * redirect to transaction.create.expense.
      */
     public function create()
+    {
+        return redirect()->route('transaction.create.expense');
+    }
+
+    /**
+     * Show the form for creating a a new resource type expense.
+     */
+    public function createExpense()
     {
         // logged in user
         $user = auth()->user();
@@ -47,11 +55,36 @@ class TransactionController extends Controller
                 'Transaction' => route('transaction.index'),
                 'Create' => "#",
             ],
-            'categories' => $user->categories,
+            'categories' => $user->categories()->where('type', 'expense')->get(),
             'accounts' => $user->accounts,
-            'content' => 'transaction.create',
+            'content' => 'transaction.create.expense',
         ];
 
+        dd($data['categories']);
+        return view("admin.layouts.wrapper", $data);
+    }
+
+    /**
+     * Show the form for creating a a new resource type income.
+     */
+    public function createIncome()
+    {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        $data = [
+            'title' => 'Transaction',
+            'breadcrumbs' => [
+                'Transaction' => route('transaction.index'),
+                'Create' => "#",
+            ],
+            'categories' => $user->categories()->where('type', 'income')->get(),
+            'accounts' => $user->accounts,
+            'content' => 'transaction.create.income',
+        ];
+
+        dd($data['categories']);
         return view("admin.layouts.wrapper", $data);
     }
 
@@ -132,6 +165,63 @@ class TransactionController extends Controller
             'categories' => $user->categories,
             'accounts' => $user->accounts,
             'content' => 'transaction.edit',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
+    }
+    /**
+     * Show the form for editing the specified resource.
+     */
+
+    public function editExpense(Transaction $transaction)
+    {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        // authorize user
+        if ($user->id !== $transaction->user_id) {
+            abort(403);
+        }
+
+        $data = [
+            'title' => 'Transaction',
+            'breadcrumbs' => [
+                'Transaction' => route('transaction.index'),
+                'Edit' => "#",
+            ],
+            'transaction' => $transaction,
+            'categories' => $user->categories()->where('type', 'expense')->get(),
+            'accounts' => $user->accounts,
+            'content' => 'transaction.edit.expense',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
+    }
+    /**
+     * Show the form for editing the specified resource type income.
+     */
+    public function editIncome(Transaction $transaction)
+    {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        // authorize user
+        if ($user->id !== $transaction->user_id) {
+            abort(403);
+        }
+
+        $data = [
+            'title' => 'Transaction',
+            'breadcrumbs' => [
+                'Transaction' => route('transaction.index'),
+                'Edit' => "#",
+            ],
+            'transaction' => $transaction,
+            'categories' => $user->categories()->where('type', 'income')->get(),
+            'accounts' => $user->accounts,
+            'content' => 'transaction.edit.income',
         ];
 
         return view("admin.layouts.wrapper", $data);
