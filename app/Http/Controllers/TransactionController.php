@@ -100,6 +100,7 @@ class TransactionController extends Controller
             'date' => 'required|date',
         ]);
 
+
         // check account_id and category_id is related to user
         $account = $user->accounts->find($data['account_id']);
         $category = $user->categories->find($data['category_id']);
