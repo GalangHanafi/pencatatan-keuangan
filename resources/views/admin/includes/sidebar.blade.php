@@ -33,7 +33,7 @@
                         <span>
                             <i class="ti ti-cards"></i>
                         </span>
-                        <span class="hide-menu">account</span>
+                        <span class="hide-menu">Account</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -41,7 +41,7 @@
                         <span>
                             <i class="ti ti-file-description"></i>
                         </span>
-                        <span class="hide-menu">transaction</span>
+                        <span class="hide-menu">Transaction</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -49,7 +49,7 @@
                         <span>
                             <i class="ti ti-typography"></i>
                         </span>
-                        <span class="hide-menu">category</span>
+                        <span class="hide-menu">Category</span>
                     </a>
                 </li>
             </ul>
