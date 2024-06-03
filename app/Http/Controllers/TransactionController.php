@@ -99,8 +99,7 @@ class TransactionController extends Controller
             'amount' => 'required|numeric|min:0',
             'date' => 'required|date',
         ]);
-
-
+        
         // check account_id and category_id is related to user
         $account = $user->accounts->find($data['account_id']);
         $category = $user->categories->find($data['category_id']);
@@ -201,7 +200,7 @@ class TransactionController extends Controller
         // logged in user
         $user = auth()->user();
         $user = User::find($user->id);
-
+    
         // validation
         $data = $request->validate([
             'account_id' => 'required',
@@ -212,44 +211,43 @@ class TransactionController extends Controller
             'amount' => 'required|numeric|min:0',
             'date' => 'required|date',
         ]);
-
+    
         // check account_id and category_id is related to user
         $account = $user->accounts->find($data['account_id']);
         $category = $user->categories->find($data['category_id']);
         if (!$account || !$category) {
             return redirect()->back()->with('error', 'Account or Category not found!');
         }
-
-        // logic for updating account balance
+    
+        // Logic for updating account balance
         $originalAmount = $transaction->amount;
         $originalType = $transaction->type;
-
+    
         // Reverse the original transaction effect
         if ($originalType === 'income') {
             $account->balance -= $originalAmount;
         } else {
             $account->balance += $originalAmount;
         }
-
+    
         // Apply the new transaction effect
         if ($data['type'] === 'income') {
             $account->balance += $data['amount'];
         } else {
             $account->balance -= $data['amount'];
         }
-
+    
         // Save the updated account balance
         $account->update([
             'balance' => $account->balance
         ]);
-
-        // update transaction
+    
+        // Update the transaction details
         $transaction->update($data);
-
-        // redirect to transaction index
+    
+        // Redirect to transaction index
         return redirect()->route('transaction.index')->with('success', 'Transaction updated successfully!');
     }
-
     /**
      * Remove the specified resource from storage.
      */
