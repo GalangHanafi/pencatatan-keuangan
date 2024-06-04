@@ -53,32 +53,39 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        // current user
+
+        // Bersihkan input balance dengan menghapus simbol mata uang dan pemisah ribuan
+        $data = $request->all();
+        $data['balance'] = str_replace(['Rp ', '.', ','], ['', '', ''], $data['balance']);
+        $data['balance'] = floatval($data['balance']);
+
+        // Current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
-
-        // validation
-        $data = $request->validate([
+        // Validation
+        $validatedData = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|numeric|min:0',
+            'balance' => 'required|min:0',
             'icon' => 'required|string',
         ]);
 
-        // create account
-        $account = $user->accounts()->create($data);
+        // Perbarui balance yang sudah dibersihkan ke validatedData
+        $validatedData['balance'] = $data['balance'];
 
-        // get income other category
+        // Create account
+        $account = $user->accounts()->create($validatedData);
+
+        // Get income other category
         $incomeOtherCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
 
-        // create transaction
+        // Create transaction
         $user->transactions()->create([
             'account_id' => $account->id,
             'category_id' => $incomeOtherCategory->id,
             'name' => 'Initial Balance',
-            'description' => 'Initial Balance for ' . $data['name'],
+            'description' => 'Initial Balance for ' . $validatedData['name'],
             'type' => 'income',
-            'amount' => $data['balance'],
+            'amount' => $validatedData['balance'],
             'date' => date('Y-m-d'),
         ]);
 

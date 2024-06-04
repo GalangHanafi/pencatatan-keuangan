@@ -41,7 +41,10 @@
                                 </div>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="mb-0 fw-normal">{{ $account->balance }}</p>
+                                @php
+                                $convertedBalance =  number_format($account->balance, 2, ',', '.');   
+                                @endphp
+                                <p class="mb-0 fw-normal">Rp. {{ $convertedBalance }}</p>
                             </td>
                             <td class="border-bottom-0">
                                 {{-- edit button --}}
