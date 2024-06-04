@@ -1,13 +1,4 @@
-@include('transaction.edit.include.tab')
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
-        {{-- {{ $transaction }}
-        {{ $categories }}
-        {{ $accounts }} --}}
-        <form action="{{ route('transaction.update', $transaction) }}" method="POST">
-            @csrf
-            @method('PUT')
-        </form>
-    </div>
-</div>
+@extends('transaction.edit.include.wrapper')
+@section('content')
+<input type="text" name="type" value="income" hidden>
+@endsection
