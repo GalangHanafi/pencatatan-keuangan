@@ -16,7 +16,6 @@ class AccountController extends Controller
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         $data = [
             'title' => 'Account',
@@ -53,27 +52,23 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-
-        // Bersihkan input balance dengan menghapus simbol mata uang dan pemisah ribuan
-        $data = $request->all();
-        $data['balance'] = str_replace(['Rp ', '.', ','], ['', '', ''], $data['balance']);
-        $data['balance'] = floatval($data['balance']);
+        // hapus "." dari $request->balance
+        $request->merge([
+            'balance' => str_replace('.', '', $request->balance),
+        ]);
 
         // Current user
         $user = auth()->user();
 
         // Validation
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|min:0',
+            'balance' => 'required|min:0|numeric|digits_between:0,10',
             'icon' => 'required|string',
         ]);
 
-        // Perbarui balance yang sudah dibersihkan ke validatedData
-        $validatedData['balance'] = $data['balance'];
-
         // Create account
-        $account = $user->accounts()->create($validatedData);
+        $account = $user->accounts()->create($data);
 
         // Get income other category
         $incomeOtherCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
@@ -83,9 +78,9 @@ class AccountController extends Controller
             'account_id' => $account->id,
             'category_id' => $incomeOtherCategory->id,
             'name' => 'Initial Balance',
-            'description' => 'Initial Balance for ' . $validatedData['name'],
+            'description' => 'Initial Balance for ' . $data['name'],
             'type' => 'income',
-            'amount' => $validatedData['balance'],
+            'amount' => $data['balance'],
             'date' => date('Y-m-d'),
         ]);
 
@@ -107,7 +102,6 @@ class AccountController extends Controller
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
@@ -133,19 +127,23 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        // current user
+        // hapus "." dari $request->balance
+        $request->merge([
+            'balance' => str_replace('.', '', $request->balance),
+        ]);
+
+        // Current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
             abort(403);
         };
 
-        // validation
+        // Validation
         $data = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|numeric|min:0',
+            'balance' => 'required|min:0|numeric|digits_between:0,10',
             'icon' => 'required|string',
         ]);
 
@@ -201,7 +199,6 @@ class AccountController extends Controller
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
