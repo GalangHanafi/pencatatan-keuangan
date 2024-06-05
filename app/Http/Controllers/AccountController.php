@@ -63,7 +63,7 @@ class AccountController extends Controller
         // Validation
         $data = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|min:0|numeric|digits_between:0,10',
+            'balance' => 'required|min:0|numeric|digits_between:1,10',
             'icon' => 'required|string',
         ]);
 
@@ -143,7 +143,7 @@ class AccountController extends Controller
         // Validation
         $data = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|min:0|numeric|digits_between:0,10',
+            'balance' => 'required|min:0|numeric|digits_between:1,10',
             'icon' => 'required|string',
         ]);
 
