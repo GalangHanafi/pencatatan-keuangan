@@ -24,6 +24,21 @@
     <script src="{{ asset('admin/src/assets/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
     <script src="{{ asset('admin/src/assets/libs/simplebar/dist/simplebar.js') }}"></script>
     <script src="{{ asset('admin/src/assets/js/dashboard.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-mask-plugin@1.14.16/dist/jquery.mask.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+    <script>
+        console.log('js nyambung');
+        $(document).ready(function($) {
+            $('.mask-money').maskMoney({
+                prefix: '', // Simbol di depan di handle oleh input group
+                allowNegative: false, // Tidak mengizinkan nilai negatif
+                thousands: '.', // Pemisah ribuan
+                decimal: ',', // Pemisah desimal
+                affixesStay: true, // Tetap menampilkan prefix
+                precision: 0, //angka di belakang ribuan ilang
+            });
+        });
+    </script>
 </body>
 
 </html>

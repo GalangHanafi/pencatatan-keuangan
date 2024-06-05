@@ -4,8 +4,8 @@
             <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
         </div>
         <form action="{{ route('account.update', $account) }}" method="POST">
-        @csrf
-        @method('PUT')
+            @csrf
+            @method('PUT')
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <x-icon-select-modal :$icons :selected="$account" />
                 <x-input-error :messages="$errors->get('icon')" class="text-center" />
@@ -19,8 +19,12 @@
 
                 <div class="mb-3">
                     <label for="balance" class="form-label">Edit Balance</label>
-                    <input type="number" class="form-control" name="balance" id="balance"
-                         value="{{ $account->balance }}" required>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">Rp</span>
+                        <input type="text" class="form-control mask-money" name="balance" id="balance"
+                            value="{{ $account->balance }}" required aria-label="Balance"
+                            aria-describedby="basic-addon1">
+                    </div>
                     <x-input-error :messages="$errors->get('balance')" class="mt-2" />
                 </div>
 
