@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->enum('type', ['income', 'expense', 'saving']);
-            $table->decimal('amount');
+            $table->integer('amount');
             $table->date('date');
 
             $table->timestamps();
