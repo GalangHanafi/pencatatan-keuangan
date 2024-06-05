@@ -30,12 +30,9 @@
         console.log('js nyambung');
         $(document).ready(function($) {
             $('.mask-money').maskMoney({
-                prefix: '', // Simbol di depan di handle oleh input group
                 allowNegative: false, // Tidak mengizinkan nilai negatif
                 thousands: '.', // Pemisah ribuan
-                decimal: ',', // Pemisah desimal
-                affixesStay: true, // Tetap menampilkan prefix
-                precision: 0, //angka di belakang ribuan ilang
+                precision: 0, // Jumlah digit desimal
             });
         });
     </script>
