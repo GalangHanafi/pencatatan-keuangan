@@ -67,10 +67,7 @@
                                 <p class="mb-0 fw-normal">{{ $transaction->type }}</p>
                             </td>
                             <td class="border-bottom-0">
-                                @php
-                                $convertedBalance =  number_format($transaction->amount, 2, ',', '.');   
-                                @endphp
-                                <p class="mb-0 fw-normal">Rp. {{ $convertedBalance }}</p>
+                                <p class="mb-0 fw-normal">Rp. {{ number_format($transaction->amount, 0, ',', '.') }}</p>
                             </td>
                             <td class="border-bottom-0">
                                 <p class="mb-0 fw-normal">{{ $transaction->date }}</p>

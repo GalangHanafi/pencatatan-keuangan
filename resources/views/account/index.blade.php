@@ -41,15 +41,11 @@
                                 </div>
                             </td>
                             <td class="border-bottom-0">
-                                @php
-                                $convertedBalance =  number_format($account->balance, 2, ',', '.');   
-                                @endphp
-                                <p class="mb-0 fw-normal">Rp. {{ $convertedBalance }}</p>
+                                <p class="mb-0 fw-normal">Rp. {{ number_format($account->balance, 0, ',', '.') }}</p>
                             </td>
                             <td class="border-bottom-0">
                                 {{-- edit button --}}
-                                <a href="{{ route('account.edit', $account) }}"
-                                    class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('account.edit', $account) }}" class="btn btn-primary btn-sm">Edit</a>
                                 {{-- delete button --}}
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $account->id }}">
@@ -62,7 +58,8 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="deleteModal{{ $account->id }}Label">Are You Sure?</h1>
+                                                <h1 class="modal-title fs-5" id="deleteModal{{ $account->id }}Label">
+                                                    Are You Sure?</h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
