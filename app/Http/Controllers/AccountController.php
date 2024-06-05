@@ -52,13 +52,13 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
+        // Current user
+        $user = auth()->user();
+
         // hapus "." dari $request->balance
         $request->merge([
             'balance' => str_replace('.', '', $request->balance),
         ]);
-
-        // Current user
-        $user = auth()->user();
 
         // Validation
         $data = $request->validate([
@@ -127,13 +127,13 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
+        // Current user
+        $user = auth()->user();
+
         // hapus "." dari $request->balance
         $request->merge([
             'balance' => str_replace('.', '', $request->balance),
         ]);
-
-        // Current user
-        $user = auth()->user();
 
         // authorization
         if ($user->id !== $account->user_id) {
