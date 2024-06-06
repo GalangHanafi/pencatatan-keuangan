@@ -18,7 +18,7 @@ class TransactionController extends Controller
         $user = User::find($user->id);
 
         // get all transactions for logged in user, ordered by most recent
-        $transactions = $user->transactions->sortByDesc('date');
+        $transactions = $user->transactions->sortByDesc('id');
 
         $data = [
             'title' => 'Transaction',
@@ -98,7 +98,7 @@ class TransactionController extends Controller
             'account_id' => 'required',
             'category_id' => 'required',
             'name' => 'required',
-            'description' => 'string',
+            'description' => 'nullable|string',
             'type' => 'in:income,expense',
             'amount' => 'required|numeric|min:0|digits_between:1,10',
             'date' => 'required|date',
@@ -214,7 +214,7 @@ class TransactionController extends Controller
             'account_id' => 'required',
             'category_id' => 'required',
             'name' => 'required',
-            'description' => 'string',
+            'description' => 'nullable|string',
             'type' => 'in:income,expense',
             'amount' => 'required|numeric|min:0|digits_between:1,10',
             'date' => 'required|date',
