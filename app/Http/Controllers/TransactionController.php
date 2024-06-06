@@ -302,7 +302,7 @@ class TransactionController extends Controller
         $user = User::find($user->id);
 
         // get all transactions for logged in user, ordered by most recent
-        $transactions = $user->transactions()->onlyTrashed()->get();
+        $transactions = $user->transactions()->onlyTrashed()->orderBy('deleted_at', 'desc')->get();
 
         $data = [
             'title' => 'Deleted Transaction',
