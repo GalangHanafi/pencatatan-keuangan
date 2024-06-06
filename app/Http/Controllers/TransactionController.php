@@ -11,29 +11,56 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // logged in user
         $user = auth()->user();
         $user = User::find($user->id);
-
-        // get all transactions for logged in user, ordered by most recent
-        $transactions = $user->transactions->sortByDesc('id');
-
+    
+        // Start with transactions query
+        $transactionsQuery = $user->transactions()->orderBy('date', 'desc');
+    
+        // Filtering
+        if ($request->filled('category_id')) {
+            $transactionsQuery->where('category_id', $request->category_id);
+        }
+        if ($request->filled('account_id')) {
+            $transactionsQuery->where('account_id', $request->account_id);
+        }
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $transactionsQuery->whereBetween('date', [$request->start_date, $request->end_date]);
+        } elseif ($request->filled('start_date')) {
+            $transactionsQuery->where('date', '>=', $request->start_date);
+        } elseif ($request->filled('end_date')) {
+            $transactionsQuery->where('date', '<=', $request->end_date);
+        }
+        if ($request->filled('search')) {
+            $search = strtolower($request->search);
+            $transactionsQuery->where(function($query) use ($search) {
+                $query->whereRaw('LOWER(name) LIKE ?', ["%{$search}%"])
+                      ->orWhereRaw('LOWER(description) LIKE ?', ["%{$search}%"]);
+            });
+        }
+    
+        // Get filtered and sorted transactions
+        $transactions = $transactionsQuery->get();
+    
         $data = [
             'title' => 'Transaction',
             'breadcrumbs' => [
                 'Transaction' => "#",
             ],
             'transactions' => $transactions,
+            'categories' => $user->categories,
+            'accounts' => $user->accounts,
             'content' => 'transaction.index',
         ];
-
+    
         return view("admin.layouts.wrapper", $data);
     }
 
     /**
-     * Show the form for creating a a new resource type expense.
+     * Show the form for creating a new resource type expense.
      */
     public function createExpense()
     {
@@ -57,7 +84,7 @@ class TransactionController extends Controller
     }
 
     /**
-     * Show the form for creating a a new resource type income.
+     * Show the form for creating a new resource type income.
      */
     public function createIncome()
     {
@@ -85,7 +112,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        // loged in user
+        // logged in user
         $user = auth()->user();
         $user = User::find($user->id);
 
@@ -166,6 +193,7 @@ class TransactionController extends Controller
 
         return view("admin.layouts.wrapper", $data);
     }
+
     /**
      * Show the form for editing the specified resource type income.
      */
@@ -192,10 +220,10 @@ class TransactionController extends Controller
             'accounts' => $user->accounts,
             'content' => 'transaction.edit.income',
         ];
-
+    
         return view("admin.layouts.wrapper", $data);
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
@@ -256,6 +284,7 @@ class TransactionController extends Controller
         // Redirect to transaction index
         return redirect()->route('transaction.index')->with('success', 'Transaction updated successfully!');
     }
+    
     /**
      * Remove the specified resource from storage.
      */
@@ -263,18 +292,18 @@ class TransactionController extends Controller
     {
         // logged in user
         $user = auth()->user();
-
+    
         // authorize user
         if ($user->id !== $transaction->user_id) {
             abort(403);
         }
-
+    
         // check account_id is related to user
         $account = $user->accounts->where('id', $transaction->account_id)->first();
         if (!$account) {
             return redirect()->route('transaction.index')->with('error', 'Account not found!');
         }
-
+    
         // if type is income, subtract account balance
         if ($transaction->type === 'income') {
             $account->balance -= $transaction->amount;
@@ -283,15 +312,15 @@ class TransactionController extends Controller
         if ($transaction->type === 'expense') {
             $account->balance += $transaction->amount;
         }
-
+    
         // update transaction account
         $account->update([
             'balance' => $account->balance
         ]);
-
+    
         // delete transaction
         $transaction->delete();
-
+    
         return redirect()->route('transaction.index');
     }
 
