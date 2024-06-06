@@ -63,12 +63,34 @@
                             <td class="border-bottom-0">
                                 <p class="mb-0 fw-normal">{{ $transaction->description }}</p>
                             </td>
+
                             <td class="border-bottom-0">
-                                <p class="mb-0 fw-normal">{{ $transaction->type }}</p>
+                                @if ($transaction->type == 'income')
+                                    <p class="mb-0 fw-normal text-success">{{ $transaction->type }}</p>
+                                @elseif($transaction->type == 'expense')
+                                    <p class="mb-0 fw-normal text-danger">{{ $transaction->type }}</p>
+                                @else
+                                    <p class="mb-0 fw-normal">{{ $transaction->type }}</p>
+                                @endif
                             </td>
+
                             <td class="border-bottom-0">
-                                <p class="mb-0 fw-normal">Rp. {{ number_format($transaction->amount, 0, ',', '.') }}</p>
+                                @if ($transaction->type == 'income')
+                                    <p class="mb-0 fw-normal text-success">
+                                        Rp. {{ number_format($transaction->amount, 0, ',', '.') }} +
+                                    </p>
+                                @elseif($transaction->type == 'expense')
+                                    <p class="mb-0 fw-normal text-danger">
+                                        Rp. {{ number_format($transaction->amount, 0, ',', '.') }} -
+                                    </p>
+                                @else
+                                    <p class="mb-0 fw-normal">
+                                        Rp. {{ number_format($transaction->amount, 0, ',', '.') }}
+                                    </p>
+                                @endif
                             </td>
+
+
                             <td class="border-bottom-0">
                                 <p class="mb-0 fw-normal">{{ $transaction->date }}</p>
                             </td>
