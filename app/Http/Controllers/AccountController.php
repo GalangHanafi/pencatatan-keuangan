@@ -17,19 +17,12 @@ class AccountController extends Controller
         // current user
         $user = auth()->user();
 
-        // get all accounts for the current user
-        $accounts = $user->accounts()->get();
-
-        // calculate total balance
-        $totalBalance = $accounts->sum('balance');
-
         $data = [
             'title' => 'Account',
             'breadcrumbs' => [
                 'Account' => '#',
             ],
-            'accounts' => $accounts,
-            'totalBalance' => $totalBalance,
+            'accounts' => $user->accounts()->get(),
             'content' => 'account.index',
         ];
 
@@ -59,26 +52,23 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        // Bersihkan input balance dengan menghapus simbol mata uang dan pemisah ribuan
-        $data = $request->all();
-        $data['balance'] = str_replace(['Rp ', '.', ','], ['', '', ''], $data['balance']);
-        $data['balance'] = floatval($data['balance']);
-
         // Current user
         $user = auth()->user();
 
+        // hapus "." dari $request->balance
+        $request->merge([
+            'balance' => str_replace('.', '', $request->balance),
+        ]);
+
         // Validation
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|min:0',
+            'balance' => 'required|min:0|numeric|digits_between:1,10',
             'icon' => 'required|string',
         ]);
 
-        // Perbarui balance yang sudah dibersihkan ke validatedData
-        $validatedData['balance'] = $data['balance'];
-
         // Create account
-        $account = $user->accounts()->create($validatedData);
+        $account = $user->accounts()->create($data);
 
         // Get income other category
         $incomeOtherCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
@@ -88,13 +78,21 @@ class AccountController extends Controller
             'account_id' => $account->id,
             'category_id' => $incomeOtherCategory->id,
             'name' => 'Initial Balance',
-            'description' => 'Initial Balance for ' . $validatedData['name'],
+            'description' => 'Initial Balance for ' . $data['name'],
             'type' => 'income',
-            'amount' => $validatedData['balance'],
+            'amount' => $data['balance'],
             'date' => date('Y-m-d'),
         ]);
 
         return redirect()->route('account.index')->with('success', 'Account created successfully!');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Account $account)
+    {
+        //
     }
 
     /**
@@ -129,18 +127,23 @@ class AccountController extends Controller
      */
     public function update(Request $request, Account $account)
     {
-        // current user
+        // Current user
         $user = auth()->user();
+
+        // hapus "." dari $request->balance
+        $request->merge([
+            'balance' => str_replace('.', '', $request->balance),
+        ]);
 
         // authorization
         if ($user->id !== $account->user_id) {
             abort(403);
         };
 
-        // validation
+        // Validation
         $data = $request->validate([
             'name' => 'required|string',
-            'balance' => 'required|numeric|min:0',
+            'balance' => 'required|min:0|numeric|digits_between:1,10',
             'icon' => 'required|string',
         ]);
 
@@ -158,13 +161,13 @@ class AccountController extends Controller
         // check if balance is added or subtracted
         if ($data['balance'] > $account->balance) {
             $transactionType = 'income';
-            $transactionDescription = 'Add ' . ($data['balance'] - $account->balance) . ' to ' . $data['name'];
+            $transactionDescription = 'Add ' . $data['balance'] - $account->balance . ' to ' . $data['name'];
             $transactionAmount = $data['balance'] - $account->balance;
             // transactionCategory will be "income other"
             $transactionCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
         } else {
             $transactionType = 'expense';
-            $transactionDescription = 'Subtract ' . ($account->balance - $data['balance']) . ' from ' . $data['name'];
+            $transactionDescription = 'Subtract ' . $account->balance - $data['balance'] . ' from ' . $data['name'];
             $transactionAmount = $account->balance - $data['balance'];
             // transactionCategory will be "expense other"
             $transactionCategory = $user->categories()->where('type', 'expense')->where('name', 'Other')->first();
