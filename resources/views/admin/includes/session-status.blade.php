@@ -1,4 +1,4 @@
-@if (session('danger'))
+@if (session('error'))
     <x-alert type="danger"> {{ session('danger') }} </x-alert>
 @endif
 @if (session('success'))
