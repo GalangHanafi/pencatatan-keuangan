@@ -50,5 +50,8 @@ Route::middleware(['auth',])->group(function () {
     Route::get('/transaction/create/income', [TransactionController::class, 'createIncome'])->name('transaction.create.income');
     Route::get('/transaction/{transaction}/edit/expense', [TransactionController::class, 'editExpense'])->name('transaction.edit.expense');
     Route::get('/transaction/{transaction}/edit/income', [TransactionController::class, 'editIncome'])->name('transaction.edit.income');
+    Route::get('/transaction/trash', [TransactionController::class, 'trash'])->name('transaction.trash');
+    Route::post('/transaction/trash/{transaction}', [TransactionController::class, 'restore'])->withTrashed()->name('transaction.trash.restore');
+    Route::delete('/transaction/trash/{transaction}', [TransactionController::class, 'destroyPermanently'])->withTrashed()->name('transaction.trash.destroyPermanently');
 });
 require __DIR__ . '/auth.php';
