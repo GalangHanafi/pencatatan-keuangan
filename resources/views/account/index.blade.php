@@ -7,6 +7,8 @@
                 Create New
             </a>
         </div>
+       
+
         {{-- list of accounts --}}
         <div class="table-responsive">
             <table class="table text-nowrap mb-0 align-middle">

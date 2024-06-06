@@ -16,14 +16,20 @@ class AccountController extends Controller
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
+
+        // get all accounts for the current user
+        $accounts = $user->accounts()->get();
+
+        // calculate total balance
+        $totalBalance = $accounts->sum('balance');
 
         $data = [
             'title' => 'Account',
             'breadcrumbs' => [
                 'Account' => '#',
             ],
-            'accounts' => $user->accounts()->get(),
+            'accounts' => $accounts,
+            'totalBalance' => $totalBalance,
             'content' => 'account.index',
         ];
 
@@ -53,7 +59,6 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-
         // Bersihkan input balance dengan menghapus simbol mata uang dan pemisah ribuan
         $data = $request->all();
         $data['balance'] = str_replace(['Rp ', '.', ','], ['', '', ''], $data['balance']);
@@ -93,21 +98,12 @@ class AccountController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Account $account)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Account $account)
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
@@ -135,7 +131,6 @@ class AccountController extends Controller
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
@@ -163,13 +158,13 @@ class AccountController extends Controller
         // check if balance is added or subtracted
         if ($data['balance'] > $account->balance) {
             $transactionType = 'income';
-            $transactionDescription = 'Add ' . $data['balance'] - $account->balance . ' to ' . $data['name'];
+            $transactionDescription = 'Add ' . ($data['balance'] - $account->balance) . ' to ' . $data['name'];
             $transactionAmount = $data['balance'] - $account->balance;
             // transactionCategory will be "income other"
             $transactionCategory = $user->categories()->where('type', 'income')->where('name', 'Other')->first();
         } else {
             $transactionType = 'expense';
-            $transactionDescription = 'Subtract ' . $account->balance - $data['balance'] . ' from ' . $data['name'];
+            $transactionDescription = 'Subtract ' . ($account->balance - $data['balance']) . ' from ' . $data['name'];
             $transactionAmount = $account->balance - $data['balance'];
             // transactionCategory will be "expense other"
             $transactionCategory = $user->categories()->where('type', 'expense')->where('name', 'Other')->first();
@@ -201,7 +196,6 @@ class AccountController extends Controller
     {
         // current user
         $user = auth()->user();
-        // $user = User::find($user->id);
 
         // authorization
         if ($user->id !== $account->user_id) {
