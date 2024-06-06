@@ -294,4 +294,60 @@ class TransactionController extends Controller
 
         return redirect()->route('transaction.index');
     }
+
+    public function trash()
+    {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        // get all transactions for logged in user, ordered by most recent
+        $transactions = $user->transactions()->onlyTrashed()->get();
+
+        $data = [
+            'title' => 'Deleted Transaction',
+            'breadcrumbs' => [
+                'Transaction' => route('transaction.index'),
+                'Trash' => "#",
+            ],
+            'transactions' => $transactions,
+            'content' => 'transaction.trash',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
+    }
+
+    public function restore(Transaction $transaction)
+    {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        // authorize user
+        if ($user->id !== $transaction->user_id) {
+            abort(403);
+        }
+
+        // restore transaction
+        $transaction->restore();
+
+        return redirect()->route('transaction.trash')->with('success', 'Transaction restored successfully!');
+    }
+
+    public function destroyPermanently(Transaction $transaction)
+    {
+        // logged in user
+        $user = auth()->user();
+        $user = User::find($user->id);
+
+        // authorize user
+        if ($user->id !== $transaction->user_id) {
+            abort(403);
+        }
+
+        // delete transaction
+        $transaction->forceDelete();
+
+        return redirect()->route('transaction.trash')->with('error', 'Transaction permanently deleted!');
+    }
 }

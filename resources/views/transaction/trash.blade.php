@@ -1,17 +1,7 @@
 <div class="card">
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
-            <div>
-                <a href="{{ route('transaction.trash') }}" class="btn btn-danger mb-3">
-                    <i class="ti ti-trash me-2"></i>
-                    Trash
-                </a>
-                <a href="{{ route('transaction.create.expense') }}" class="btn btn-primary mb-3">
-                    <i class="ti ti-plus me-2"></i>
-                    Create New
-                </a>
-            </div>
+            <h5 class="card-title fw-semibold mb-4 text-danger">Your {{ $title }}</h5>
         </div>
         {{-- list of transactions --}}
         <div class="table-responsive">
@@ -41,6 +31,9 @@
                         </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Date</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Deleted Date</h6>
                         </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Action</h6>
@@ -79,13 +72,18 @@
                                 <p class="mb-0 fw-normal">{{ $transaction->date }}</p>
                             </td>
                             <td class="border-bottom-0">
-                                {{-- edit button --}}
-                                <a href="{{ $transaction->type == 'income' ? route('transaction.edit.income', $transaction) : route('transaction.edit.expense', $transaction) }}"
-                                    class="btn btn-primary btn-sm">Edit</a>
+                                <p class="mb-0 fw-normal">{{ $transaction->deleted_at }}</p>
+                            </td>
+                            <td class="border-bottom-0">
+                                {{-- restore button --}}
+                                <form class="d-inline-block" action="{{ route('transaction.trash.restore', $transaction) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-sm">Restore</button>
+                                </form>
                                 {{-- delete button --}}
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $transaction->id }}">
-                                    Delete
+                                    Delete Permanently
                                 </button>
 
                                 <!-- Modal -->
@@ -109,7 +107,8 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('transaction.destroy', $transaction->id) }}"
+                                                <form
+                                                    action="{{ route('transaction.trash.destroyPermanently', $transaction) }}"
                                                     method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
