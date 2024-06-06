@@ -45,10 +45,10 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" name="description" id="description" value="{{ old('description', $transaction->description) }}">
+                <textarea class="form-control" name="description" id="description">{{ old('description', $transaction->description) }}</textarea>
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
-            </form>
-        </div>
-        </div>
+        </form>
+    </div>
+</div>
