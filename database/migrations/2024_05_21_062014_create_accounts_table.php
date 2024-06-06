@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
 
             $table->string('name');
-            $table->decimal('balance')->default(0.00);
+            $table->integer('balance')->default(0);
             $table->string('icon');
             $table->boolean('is_default')->default(false);
 

@@ -2,10 +2,16 @@
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
-            <a href="{{ route('transaction.create.expense') }}" class="btn btn-primary">
-                <i class="ti ti-plus me-2"></i>
-                Create New
-            </a>
+            <div>
+                <a href="{{ route('transaction.trash') }}" class="btn btn-danger mb-3">
+                    <i class="ti ti-trash me-2"></i>
+                    Trash
+                </a>
+                <a href="{{ route('transaction.create.expense') }}" class="btn btn-primary mb-3">
+                    <i class="ti ti-plus me-2"></i>
+                    Create New
+                </a>
+            </div>
         </div>
         
         <!-- Formulir Filter -->
@@ -74,10 +80,7 @@
                             <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ $transaction->description }}</p></td>
                             <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ $transaction->type }}</p></td>
                             <td class="border-bottom-0">
-                                @php
-                                    $convertedBalance = number_format($transaction->amount, 2, ',', '.');
-                                @endphp
-                                <p class="mb-0 fw-normal">Rp. {{ $convertedBalance }}</p>
+                                <p class="mb-0 fw-normal">Rp. {{ number_format($transaction->amount, 0, ',', '.') }}</p>
                             </td>
                             <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ $transaction->date }}</p></td>
                             <td class="border-bottom-0">
