@@ -18,7 +18,7 @@ class TransactionController extends Controller
         $user = User::find($user->id);
 
         // get all transactions for logged in user, ordered by most recent
-        $transactions = $user->transactions()->orderBy('created_at', 'desc')->get();
+        $transactions = $user->transactions->sortByDesc('date');
 
         $data = [
             'title' => 'Transaction',
