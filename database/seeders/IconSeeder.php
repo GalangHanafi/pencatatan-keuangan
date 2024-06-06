@@ -22,7 +22,7 @@ class IconSeeder extends Seeder
             'ti ti-at',
             'ti ti-award',
             'ti ti-bell',
-            'ti ti-book-open',
+            'ti ti-cash',
             'ti ti-briefcase',
             'ti ti-calendar',
             'ti ti-camera',
