@@ -28,30 +28,53 @@
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                     <span class="hide-menu">MENU</span>
                 </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('account.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-cards"></i>
-                        </span>
-                        <span class="hide-menu">Account</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('transaction.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-file-description"></i>
-                        </span>
-                        <span class="hide-menu">Transaction</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('category.index') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-typography"></i>
-                        </span>
-                        <span class="hide-menu">Category</span>
-                    </a>
-                </li>
+                @if (auth()->user()->is_superadmin)
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('faq.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-cards"></i>
+                            </span>
+                            <span class="hide-menu">Faq</span>
+                        </a>
+                        <a class="sidebar-link" href="{{ route('feature.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-cards"></i>
+                            </span>
+                            <span class="hide-menu">Feature</span>
+                        </a>
+                        <a class="sidebar-link" href="{{ route('why.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-cards"></i>
+                            </span>
+                            <span class="hide-menu">Why</span>
+                        </a>
+                    </li>
+                @else
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('account.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-cards"></i>
+                            </span>
+                            <span class="hide-menu">Account</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('transaction.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-file-description"></i>
+                            </span>
+                            <span class="hide-menu">Transaction</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('category.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-typography"></i>
+                            </span>
+                            <span class="hide-menu">Category</span>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

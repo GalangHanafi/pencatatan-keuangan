@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +18,16 @@ class DatabaseSeeder extends Seeder
             IconSeeder::class,
             User1Seeder::class,
             User2Seeder::class,
+        ]);
+
+        // make superadmin
+        User::create([
+            'name' => 'superadmin',
+            'phone'=> '',
+            'address' => '',
+            'email' => 'superadmin@example.com',
+            'password' => bcrypt('superadmin'),
+            'is_superadmin' => true
         ]);
     }
 }

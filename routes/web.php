@@ -6,8 +6,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\IconController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\WhyController;
+use Illuminate\Console\View\Components\Warn;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -54,4 +58,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/transaction/trash/{transaction}', [TransactionController::class, 'restore'])->withTrashed()->name('transaction.trash.restore');
     Route::delete('/transaction/trash/{transaction}', [TransactionController::class, 'destroyPermanently'])->withTrashed()->name('transaction.trash.destroyPermanently');
 });
+
+// auth superadmin
+Route::middleware(['auth', 'superadmin'])->group(function () {
+    Route::resource('faq', FaqController::class)->except(['show']);
+    Route::resource('feature', FeatureController::class)->except(['show']);
+    Route::resource('why', WhyController::class)->except(['show']);
+});
+
 require __DIR__ . '/auth.php';
