@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,5 +30,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('superadmin'),
             'is_superadmin' => true
         ]);
+        // verify superadmin
+        DB::table('users')->where('email', 'superadmin@example.com')->update(['email_verified_at' => now()]);
     }
 }
