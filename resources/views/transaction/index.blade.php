@@ -3,6 +3,10 @@
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
             <div>
+                <a href="{{ route('transaction.export.pdf', request()->all()) }}" class="btn btn-success mb-3">
+                    <i class="ti ti-download me-2"></i>
+                    Export PDF
+                </a>
                 <a href="{{ route('transaction.trash') }}" class="btn btn-danger mb-3">
                     <i class="ti ti-trash me-2"></i>
                     Trash
@@ -13,18 +17,21 @@
                 </a>
             </div>
         </div>
-        
+
         <!-- Formulir Filter -->
         <form method="GET" action="{{ route('transaction.index') }}" class="mb-4">
             <div class="row">
                 <div class="col-md-2">
-                    <input type="text" class="form-control" name="search" placeholder="Search transactions..." value="{{ request('search') }}">
+                    <input type="text" class="form-control" name="search" placeholder="Search transactions..."
+                        value="{{ request('search') }}">
                 </div>
                 <div class="col-md-2">
                     <select class="form-select" name="category_id">
                         <option value="">Select Category</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}"
+                                {{ request('category_id') == $category->id ? 'selected' : '' }}>{{ $category->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -32,15 +39,19 @@
                     <select class="form-select" name="account_id">
                         <option value="">Select Account</option>
                         @foreach ($accounts as $account)
-                            <option value="{{ $account->id }}" {{ request('account_id') == $account->id ? 'selected' : '' }}>{{ $account->name }}</option>
+                            <option value="{{ $account->id }}"
+                                {{ request('account_id') == $account->id ? 'selected' : '' }}>{{ $account->name }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <input type="date" class="form-control" name="start_date" value="{{ request('start_date') }}" placeholder="Tanggal Mulai">
+                    <input type="date" class="form-control" name="start_date" value="{{ request('start_date') }}"
+                        placeholder="Tanggal Mulai">
                 </div>
                 <div class="col-md-2">
-                    <input type="date" class="form-control" name="end_date" value="{{ request('end_date') }}" placeholder="Tanggal Akhir">
+                    <input type="date" class="form-control" name="end_date" value="{{ request('end_date') }}"
+                        placeholder="Tanggal Akhir">
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="form-control bg-primary text-light">Filter</button>
@@ -53,23 +64,45 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0"></h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Sumber</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Kategori</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Nama</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Deskripsi</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Tipe</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Jumlah</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Tanggal</h6></th>
-                        <th class="border-bottom-0"><h6 class="fw-semibold mb-0">Aksi</h6></th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0"></h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Sumber</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Kategori</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Nama</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Deskripsi</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Tipe</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Jumlah</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Tanggal</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Aksi</h6>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     {{-- looping transaksi --}}
                     @forelse ($transactions as $transaction)
                         <tr>
-                            <td class="border-bottom-0"><h6 class="fw-semibold mb-0">{{ $loop->iteration }}</h6></td>
-                            <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ $transaction->account->name }}</p></td>
+                            <td class="border-bottom-0">
+                                <h6 class="fw-semibold mb-0">{{ $loop->iteration }}</h6>
+                            </td>
+                            <td class="border-bottom-0">
+                                <p class="mb-0 fw-normal">{{ $transaction->account->name }}</p>
+                            </td>
                             <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
                                     <i class="{{ $transaction->category->icon }} display-6"></i>
@@ -108,7 +141,9 @@
                                     </p>
                                 @endif
                             </td>
-                            <td class="border-bottom-0"><p class="mb-0 fw-normal">{{ $transaction->date }}</p></td>
+                            <td class="border-bottom-0">
+                                <p class="mb-0 fw-normal">{{ $transaction->date }}</p>
+                            </td>
                             <td class="border-bottom-0">
                                 {{-- tombol edit --}}
                                 <a href="{{ $transaction->type == 'income' ? route('transaction.edit.income', $transaction) : route('transaction.edit.expense', $transaction) }}"
@@ -125,8 +160,11 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="deleteModal{{ $transaction->id }}Label">Apakah Anda Yakin?</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+                                                <h1 class="modal-title fs-5"
+                                                    id="deleteModal{{ $transaction->id }}Label">Apakah Anda Yakin?
+                                                </h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Tutup"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <p class="fs-5 fw-bold text-danger">
@@ -136,8 +174,10 @@
                                                 <p>Apakah Anda benar-benar ingin menghapus transaksi ini?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                                <form action="{{ route('transaction.destroy', $transaction->id) }}" method="POST" class="d-inline-block">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Tutup</button>
+                                                <form action="{{ route('transaction.destroy', $transaction->id) }}"
+                                                    method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger">Hapus</button>
