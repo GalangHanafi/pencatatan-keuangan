@@ -57,6 +57,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transaction/trash', [TransactionController::class, 'trash'])->name('transaction.trash');
     Route::post('/transaction/trash/{transaction}', [TransactionController::class, 'restore'])->withTrashed()->name('transaction.trash.restore');
     Route::delete('/transaction/trash/{transaction}', [TransactionController::class, 'destroyPermanently'])->withTrashed()->name('transaction.trash.destroyPermanently');
+    Route::get('transaction/export/pdf', [TransactionController::class, 'exportPDF'])->name('transaction.export.pdf');
 });
 
 // auth superadmin

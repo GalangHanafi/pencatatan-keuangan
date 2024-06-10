@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Account;
+use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -16,10 +19,10 @@ class TransactionController extends Controller
         // logged in user
         $user = auth()->user();
         $user = User::find($user->id);
-    
+
         // Start with transactions query
         $transactionsQuery = $user->transactions()->orderBy('date', 'desc');
-    
+
         // Filtering
         if ($request->filled('category_id')) {
             $transactionsQuery->where('category_id', $request->category_id);
@@ -36,15 +39,15 @@ class TransactionController extends Controller
         }
         if ($request->filled('search')) {
             $search = strtolower($request->search);
-            $transactionsQuery->where(function($query) use ($search) {
+            $transactionsQuery->where(function ($query) use ($search) {
                 $query->whereRaw('LOWER(name) LIKE ?', ["%{$search}%"])
-                      ->orWhereRaw('LOWER(description) LIKE ?', ["%{$search}%"]);
+                    ->orWhereRaw('LOWER(description) LIKE ?', ["%{$search}%"]);
             });
         }
-    
+
         // Get filtered and sorted transactions
         $transactions = $transactionsQuery->get();
-    
+
         $data = [
             'title' => 'Transaction',
             'breadcrumbs' => [
@@ -55,8 +58,48 @@ class TransactionController extends Controller
             'accounts' => $user->accounts,
             'content' => 'transaction.index',
         ];
-    
+
         return view("admin.layouts.wrapper", $data);
+    }
+
+    public function exportPDF(Request $request)
+    {
+        $query = Transaction::query();
+
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->has('category_id') && $request->category_id) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->has('account_id') && $request->account_id) {
+            $query->where('account_id', $request->account_id);
+        }
+
+        if ($request->has('start_date') && $request->start_date) {
+            $query->whereDate('date', '>=', $request->start_date);
+        }
+
+        if ($request->has('end_date') && $request->end_date) {
+            $query->whereDate('date', '<=', $request->end_date);
+        }
+
+        $transactions = $query->get();
+        $filters = [
+            'search' => $request->search,
+            'category_name' => $request->category_id ? Category::find($request->category_id)->name : null,
+            'account_name' => $request->account_id ? Account::find($request->account_id)->name : null,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ];
+
+        $details = ['title' => 'Transaction Report', 'transactions' => $transactions];
+
+        $pdf = FacadePdf::loadView('transaction.pdf', compact('transactions', 'filters'));
+
+        return $pdf->download('transaction.pdf');
     }
 
     /**
@@ -220,10 +263,10 @@ class TransactionController extends Controller
             'accounts' => $user->accounts,
             'content' => 'transaction.edit.income',
         ];
-    
+
         return view("admin.layouts.wrapper", $data);
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -284,7 +327,7 @@ class TransactionController extends Controller
         // Redirect to transaction index
         return redirect()->route('transaction.index')->with('success', 'Transaction updated successfully!');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
@@ -292,18 +335,18 @@ class TransactionController extends Controller
     {
         // logged in user
         $user = auth()->user();
-    
+
         // authorize user
         if ($user->id !== $transaction->user_id) {
             abort(403);
         }
-    
+
         // check account_id is related to user
         $account = $user->accounts->where('id', $transaction->account_id)->first();
         if (!$account) {
             return redirect()->route('transaction.index')->with('error', 'Account not found!');
         }
-    
+
         // if type is income, subtract account balance
         if ($transaction->type === 'income') {
             $account->balance -= $transaction->amount;
@@ -312,15 +355,15 @@ class TransactionController extends Controller
         if ($transaction->type === 'expense') {
             $account->balance += $transaction->amount;
         }
-    
+
         // update transaction account
         $account->update([
             'balance' => $account->balance
         ]);
-    
+
         // delete transaction
         $transaction->delete();
-    
+
         return redirect()->route('transaction.index');
     }
 
