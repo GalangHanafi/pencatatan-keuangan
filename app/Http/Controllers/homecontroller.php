@@ -3,23 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Benefit;
 use App\Models\Feature;
-use App\Models\Icon;
 
 class homecontroller extends Controller
 {
     public function index()
     {
+        $tes = Benefit::all();
         $features = Feature::all();
-        $icons = Icon::all();
+      
         $data = [
-            'title' => 'feature',
-            'breadcrumbs' => [
-                'features' => '#',
-            ],
+            'bene' => $tes,// Tambahkan ulasan ke dalam array data
             'features' => $features,
-            'icon' => $icons,
-            'content' => 'features.index',
         ];
 
         return view("welcome", $data);

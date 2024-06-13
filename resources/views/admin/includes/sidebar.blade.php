@@ -48,6 +48,12 @@
                             </span>
                             <span class="hide-menu">Why</span>
                         </a>
+                        <a class="sidebar-link" href="{{ route('benefit.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-cards"></i>
+                            </span>
+                            <span class="hide-menu">Benefit</span>
+                        </a>
                     </li>
                 @else
                     <li class="sidebar-item">
