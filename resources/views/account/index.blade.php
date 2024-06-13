@@ -36,11 +36,6 @@
                             </td>
                             <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                    
-                                </div>
-                            </td>
-                            <td class="border-bottom-0">
-                                <div class="d-flex align-items-center gap-2">
                                     <i class="{{ $account->icon }} display-6"></i>
                                     <span>{{ $account->name }}</span>
                                 </div>
