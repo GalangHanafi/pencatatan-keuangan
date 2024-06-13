@@ -132,7 +132,7 @@
                         <p class="fst-italic">
                         </p>
                         <ul>
-                            @foreach ($bene as $item)
+                            @foreach ($benefits as $item)
                             <li><i class="bi bi-check"></i>{{$item->benefit}}</li>
                             @endforeach
                         </ul>

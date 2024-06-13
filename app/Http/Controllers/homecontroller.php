@@ -10,12 +10,9 @@ class homecontroller extends Controller
 {
     public function index()
     {
-        $tes = Benefit::all();
-        $features = Feature::all();
-      
         $data = [
-            'bene' => $tes,// Tambahkan ulasan ke dalam array data
-            'features' => $features,
+            'benefits' => Benefit::all(),
+            'features' => Feature::all(),
         ];
 
         return view("welcome", $data);
