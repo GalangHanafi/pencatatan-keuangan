@@ -48,13 +48,15 @@ class FeatureController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'icon' => 'required',
             'name' => 'required',
             'description' => 'required',
         ]);
 
-        Feature::create($request->all());
+        $data['icon'] = 'bx bx-' . $data['icon'];
+
+        Feature::create($data);
 
         return redirect()->route('feature.index')->with('success', 'Feature berhasil dibuat.');
     }
@@ -91,13 +93,14 @@ class FeatureController extends Controller
      */
     public function update(Request $request, Feature $feature)
     {
-        $request->validate([
+        $data = $request->validate([
             'icon' => 'required',
             'name' => 'required',
             'description' => 'required',
         ]);
 
-        $feature->update($request->all());
+        $data['icon'] = 'bx bx-' . $data['icon'];
+        $feature->update($data);
 
         return redirect()->route('feature.index')->with('success', 'Feature berhasil diperbarui.');
     }
