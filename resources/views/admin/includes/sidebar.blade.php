@@ -74,6 +74,14 @@
                             <span class="hide-menu">Category</span>
                         </a>
                     </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="{{ route('why.index') }}" aria-expanded="false">
+                            <span>
+                                <i class="ti ti-typography"></i>
+                            </span>
+                            <span class="hide-menu">Review</span>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </nav>
