@@ -34,7 +34,7 @@ class FeatureController extends Controller
         $data = [
             'title' => 'Create Feature',
             'breadcrumbs' => [
-                'Account' => route('account.index'),
+                'Feature' => route('feature.index'),
                 'Create' => '#',
             ],
             'content' => 'feature.create',
@@ -77,7 +77,7 @@ class FeatureController extends Controller
         $data = [
             'title' => 'Edit Feature',
             'breadcrumbs' => [
-                'Account' => route('feature.index'),
+                'Feature' => route('feature.index'),
                 'Edit' => '#',
             ],
             'feature' => $feature, // Single feature object to be edited
