@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\IconController;
+use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WhyController;
 use Illuminate\Console\View\Components\Warn;
@@ -27,9 +28,11 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 // guest
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('welcome');
+
+Route::get('/', [homecontroller::class, 'index'])->name('welcome');
 
 // check icon
 Route::get('/icon', [IconController::class, 'index']);
@@ -63,8 +66,8 @@ Route::middleware(['auth'])->group(function () {
 // auth superadmin
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::resource('faq', FaqController::class)->except(['show']);
-    Route::resource('feature', FeatureController::class)->except(['show']);
+    Route::resource('features', FeatureController::class)->except(['show']);
     Route::resource('why', WhyController::class)->except(['show']);
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__ . '/auth.php'; 
