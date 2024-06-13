@@ -9,11 +9,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\IconController;
-use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WhyController;
 use App\Http\Controllers\BenefitController;
-use App\Http\Controllers\homecontroller;
+use App\Http\Controllers\HomeController;
 use Illuminate\Console\View\Components\Warn;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -34,7 +33,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 //     return view('welcome');
 // })->name('welcome');
 
-Route::get('/', [homecontroller::class, 'index'])->name('welcome');
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
 // check icon
 Route::get('/icon', [IconController::class, 'index']);

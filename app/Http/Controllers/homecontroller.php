@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Benefit;
 use App\Models\Feature;
 
-class homecontroller extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
