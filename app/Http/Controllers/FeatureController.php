@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Feature;
@@ -19,7 +20,7 @@ class FeatureController extends Controller
                 'features' => '#',
             ],
             'features' => $features,
-            'content' => 'features.index',
+            'content' => 'feature.index',
         ];
 
         return view("admin.layouts.wrapper", $data);
@@ -36,7 +37,7 @@ class FeatureController extends Controller
                 'Account' => route('account.index'),
                 'Create' => '#',
             ],
-            'content' => 'features.create',
+            'content' => 'feature.create',
         ];
 
         return view("admin.layouts.wrapper", $data);
@@ -55,7 +56,7 @@ class FeatureController extends Controller
 
         Feature::create($request->all());
 
-        return redirect()->route('features.index')->with('success', 'Feature berhasil dibuat.');
+        return redirect()->route('feature.index')->with('success', 'Feature berhasil dibuat.');
     }
 
     /**
@@ -70,19 +71,19 @@ class FeatureController extends Controller
      * Menampilkan form untuk mengedit resource yang spesifik.
      */
     public function edit(Feature $feature)
-{
-    $data = [
-        'title' => 'Edit Feature',
-        'breadcrumbs' => [
-            'Account' => route('features.index'),
-            'Edit' => '#',
-        ],
-        'feature' => $feature, // Single feature object to be edited
-        'content' => 'features.edit',
-    ];
+    {
+        $data = [
+            'title' => 'Edit Feature',
+            'breadcrumbs' => [
+                'Account' => route('feature.index'),
+                'Edit' => '#',
+            ],
+            'feature' => $feature, // Single feature object to be edited
+            'content' => 'feature.edit',
+        ];
 
-    return view("admin.layouts.wrapper", $data);
-}
+        return view("admin.layouts.wrapper", $data);
+    }
 
 
     /**
@@ -98,7 +99,7 @@ class FeatureController extends Controller
 
         $feature->update($request->all());
 
-        return redirect()->route('features.index')->with('success', 'Feature berhasil diperbarui.');
+        return redirect()->route('feature.index')->with('success', 'Feature berhasil diperbarui.');
     }
 
     /**
@@ -108,7 +109,7 @@ class FeatureController extends Controller
     {
         $feature->delete();
 
-        return redirect()->route('features.index')
-                        ->with('success', 'Feature berhasil dihapus.');
+        return redirect()->route('feature.index')
+            ->with('success', 'Feature berhasil dihapus.');
     }
 }

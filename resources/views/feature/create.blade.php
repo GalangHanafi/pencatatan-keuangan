@@ -1,15 +1,15 @@
 <div class="card">
     <div class="card-body">
         <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
-        <form action="{{ route('features.store') }}" method="POST">
+        <form action="{{ route('feature.store') }}" method="POST">
             @csrf
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <div class="mb-3">
+                <div class="mb-3">
                     <label for="icon" class="form-label">Icon</label>
                     <input type="text" class="form-control" name="icon" id="icon" required>
                     <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                 </div>
-                
+
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Nama</label>

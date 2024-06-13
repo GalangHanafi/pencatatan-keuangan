@@ -66,8 +66,8 @@ Route::middleware(['auth'])->group(function () {
 // auth superadmin
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::resource('faq', FaqController::class)->except(['show']);
-    Route::resource('features', FeatureController::class)->except(['show']);
+    Route::resource('feature', FeatureController::class)->except(['show']);
     Route::resource('why', WhyController::class)->except(['show']);
 });
 
-require __DIR__ . '/auth.php'; 
+require __DIR__ . '/auth.php';

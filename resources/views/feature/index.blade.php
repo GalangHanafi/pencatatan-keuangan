@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
-            <a href="{{ route('features.create') }}" class="btn btn-primary mb-3">
+            <a href="{{ route('feature.create') }}" class="btn btn-primary mb-3">
                 <i class="ti ti-plus me-2"></i>
                 Create New
             </a>
@@ -12,10 +12,10 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                    <th class="border-bottom-0">
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0"></h6>
                         </th>
-                    <th class="border-bottom-0">
+                        <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
@@ -43,7 +43,7 @@
                             </td>
                             <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                <i class="{{ $account->icon }} display-6"></i>
+                                    <i class="{{ $account->icon }} display-6"></i>
                                 </div>
                             </td>
                             <td class="border-bottom-0">
@@ -53,7 +53,7 @@
                             </td>
                             <td class="border-bottom-0">
                                 {{-- edit button --}}
-                                <a href="{{ route('features.edit', $account) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('feature.edit', $account) }}" class="btn btn-primary btn-sm">Edit</a>
                                 {{-- delete button --}}
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $account->id }}">
@@ -81,7 +81,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('features.destroy', $account->id) }}"
+                                                <form action="{{ route('feature.destroy', $account->id) }}"
                                                     method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
