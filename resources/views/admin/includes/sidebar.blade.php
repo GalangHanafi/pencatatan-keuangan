@@ -32,25 +32,23 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('faq.index') }}" aria-expanded="false">
                             <span>
-                                <i class="ti ti-cards"></i>
+                                <i class="ti ti-question-mark"></i>
                             </span>
                             <span class="hide-menu">Faq</span>
                         </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('feature.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-cards"></i>
                             </span>
                             <span class="hide-menu">Feature</span>
                         </a>
-                        <a class="sidebar-link" href="{{ route('why.index') }}" aria-expanded="false">
-                            <span>
-                                <i class="ti ti-cards"></i>
-                            </span>
-                            <span class="hide-menu">Why</span>
-                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a class="sidebar-link" href="{{ route('benefit.index') }}" aria-expanded="false">
                             <span>
-                                <i class="ti ti-cards"></i>
+                                <i class="ti ti-thumb-up"></i>
                             </span>
                             <span class="hide-menu">Benefit</span>
                         </a>
