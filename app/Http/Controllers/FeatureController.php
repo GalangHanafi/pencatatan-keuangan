@@ -36,7 +36,6 @@ class FeatureController extends Controller
                 'Account' => route('account.index'),
                 'Create' => '#',
             ],
-            'icons' => Icon::all(),
             'content' => 'features.create',
         ];
 
@@ -78,7 +77,6 @@ class FeatureController extends Controller
             'Account' => route('features.index'),
             'Edit' => '#',
         ],
-        'icons' => Icon::all(),
         'feature' => $feature, // Single feature object to be edited
         'content' => 'features.edit',
     ];
