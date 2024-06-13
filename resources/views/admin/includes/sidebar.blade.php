@@ -36,7 +36,7 @@
                             </span>
                             <span class="hide-menu">Faq</span>
                         </a>
-                        <a class="sidebar-link" href="{{ route('features.index') }}" aria-expanded="false">
+                        <a class="sidebar-link" href="{{ route('feature.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-cards"></i>
                             </span>
