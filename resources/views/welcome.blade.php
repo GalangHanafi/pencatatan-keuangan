@@ -150,9 +150,9 @@
                         <p class="fst-italic">
                         </p>
                         <ul>
-                            <li><i class="bi bi-check"></i> Mudah Digunakan: Antarmuka yang user-friendly membuat siapa saja bisa menggunakan KantongKu tanpa kesulitan.</li>
-                            <li><i class="bi bi-check"></i> Akses Kapan Saja, Di Mana Saja: Aplikasi tersedia di Android dan iOS, sehingga Anda bisa mengakses keuangan Anda di mana saja.</li>
-                            <li><i class="bi bi-check"></i> Gratis: Nikmati semua fitur dasar tanpa biaya tambahan. Upgrade ke Premium untuk fitur lebih lanjut.</li>
+                            @foreach ($bene as $item)
+                            <li><i class="bi bi-check"></i>{{$item->benefit}}</li>
+                            @endforeach
                         </ul>
                         <p>
                         </p>
