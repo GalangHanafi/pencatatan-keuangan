@@ -4,26 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Benefit;
+use App\Models\Feature;
 
 class homecontroller extends Controller
 {
     public function index()
     {
-        // $user = auth()->user();
-
-        // $ulasan = Why::all(); // Ambil data ulasan
-        // $user = Account::all();
         $tes = Benefit::all();
+        $features = Feature::all();
+      
         $data = [
-            'title' => 'bene',
-            'breadcrumbs' => [
-                'bene' => '#',
-            ],
-
             'bene' => $tes,// Tambahkan ulasan ke dalam array data
-            'content' => 'benefit.index',
+            'features' => $features,
         ];
-        // dd($data);
+
         return view("welcome", $data);
     }
 }

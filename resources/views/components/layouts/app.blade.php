@@ -7,6 +7,7 @@
     <title>Kantongku</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('admin/src/assets/images/logos/favicon.png') }}" />
     <link rel="stylesheet" href="{{ asset('admin/src/assets/css/styles.min.css') }}" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
