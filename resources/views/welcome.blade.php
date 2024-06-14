@@ -242,119 +242,22 @@
 
                 <div class="accordion-list">
                     <ul>
+                        @foreach($faqs as $faq)
                         <li data-aos="fade-up">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">Bagaimana cara mendaftar di KantongKu? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-{{$faq->id}}">{{$faq->question}}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="accordion-list-{{$faq->id}}" class="collapse show" data-bs-parent=".accordion-list">
                                 <p>
-                                    Anda bisa mendaftar dengan mengunduh aplikasi KantongKu dari Google Play Store atau App Store, kemudian mengikuti langkah-langkah pendaftaran yang tersedia di aplikasi.
+                                  {{$faq->answer}} 
                                 </p>
                             </div>
                         </li>
-
-                        <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">Apakah KantongKu gratis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Ya, KantongKu menawarkan fitur dasar secara gratis. Namun, kami juga menyediakan versi Premium dengan fitur tambahan yang bisa diakses dengan biaya berlangganan.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">Bagaimana cara mencatat pengeluaran dan pemasukan? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Setelah masuk ke dalam aplikasi, Anda bisa menambahkan transaksi baru dengan menekan tombol "Tambah Transaksi". Isi detail transaksi seperti jumlah, kategori, dan tanggal, lalu simpan.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="300">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">Apakah data saya aman di KantongKu?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Kami menggunakan enkripsi tingkat tinggi untuk melindungi data Anda. Privasi dan keamanan data pengguna adalah prioritas utama kami.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">Bagaimana cara mengatur anggaran bulanan? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Anda bisa mengatur anggaran dengan masuk ke menu "Budgeting" di aplikasi. Tambahkan kategori anggaran yang ingin Anda kelola, tetapkan batas anggaran, dan pantau pengeluaran Anda agar tetap sesuai dengan anggaran.
-                                </p>
-                            </div>
-                        </li>
-
+                        @endforeach
                     </ul>
                 </div>
 
+
             </div>
         </section><!-- End Frequently Asked Questions Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Kontak</h2>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-map"></i>
-                                <h4>Alamat</h4>
-                                <p>A108 Adam Street,<br>New York, NY 535022</p>
-                            </div>
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-phone"></i>
-                                <h4>Hubungi</h4>
-                                <p>+1 5589 55488 55<br>+1 5589 22548 64</p>
-                            </div>
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-envelope"></i>
-                                <h4>Email</h4>
-                                <p>contact@example.com<br>info@example.com</p>
-                            </div>
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-time-five"></i>
-                                <h4>Jam Kerja</h4>
-                                <p>Mon - Fri: 9AM to 5PM<br>Sunday: 9AM to 1PM</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-up">
-                            <div class="form-group">
-                                <input placeholder="Your Name" type="text" name="name" class="form-control" id="name" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input placeholder="Your Email" type="email" class="form-control" name="email" id="email" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input placeholder="Subject" type="text" class="form-control" name="subject" id="subject" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea placeholder="Message" class="form-control" name="message" rows="5" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
 

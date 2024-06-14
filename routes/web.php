@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IconController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WhyController;
@@ -27,10 +28,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 // guest
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
+Route::get('/', [HomeController::class, 'index'])->name('welcome');
 // check icon
 Route::get('/icon', [IconController::class, 'index']);
 
