@@ -12,7 +12,19 @@ class FaqController extends Controller
      */
     public function index()
     {
-        //
+        // current user
+        $user = auth()->user();
+
+        $data = [
+            'title' => 'faq',
+            'breadcrumbs' => [
+                'faq' => '#',
+            ],
+            'faqs' => Faq::all(),
+            'content' => 'faq.index',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -20,7 +32,19 @@ class FaqController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+
+        $data = [
+            'title' => 'faq',
+            'breadcrumbs' => [
+                'faq' => route('faq.index'),
+                'create' => '#',
+            ],
+
+            'content' => 'faq.create',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -28,7 +52,14 @@ class FaqController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+        ]);
+
+        // create faq
+        Faq::create($data);
+        return redirect()->route('faq.index')->with('success', 'FAQ created successfully!');
     }
 
     /**
@@ -36,7 +67,7 @@ class FaqController extends Controller
      */
     public function show(Faq $faq)
     {
-        //
+        // Not implemented
     }
 
     /**
@@ -44,7 +75,19 @@ class FaqController extends Controller
      */
     public function edit(Faq $faq)
     {
-        //
+        $user = auth()->user();
+
+        $data = [
+            'title' => 'Edit FAQ',
+            'breadcrumbs' => [
+                'faq' => route('faq.index'),
+                'edit' => '#',
+            ],
+            'faq' => $faq,
+            'content' => 'faq.edit',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
@@ -52,7 +95,14 @@ class FaqController extends Controller
      */
     public function update(Request $request, Faq $faq)
     {
-        //
+        $data = $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+        ]);
+
+        // update faq
+        $faq->update($data);
+        return redirect()->route('faq.index')->with('success', 'FAQ updated successfully!');
     }
 
     /**
@@ -60,6 +110,9 @@ class FaqController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        //
+        // delete faq
+        $faq->delete();
+        return redirect()->route('faq.index')->with('success', 'FAQ deleted successfully!');
     }
 }
+

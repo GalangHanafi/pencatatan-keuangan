@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{asset('landing-page/assets/img/Kantongku.png')}}" rel="icon">
-    <link href="{{asset('landing-page/assets/img/icon.jpg')}}" rel="apple-touch-icon">
+    <link href="{{ asset('admin/src/assets/images/logos/favicon.png') }}" rel="icon">
+    <link href="{{ asset('admin/src/assets/images/logos/favicon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -27,14 +27,6 @@
     <!-- Template Main CSS File -->
     <link href="{{asset('landing-page/assets/css/style.css')}}" rel="stylesheet">
 
-
-    <!-- =======================================================
-  * Template Name: Appland
-  * Template URL: https://bootstrapmade.com/free-bootstrap-app-landing-page-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -45,8 +37,7 @@
 
             <div class="logo">
                 <h1><a href="index.html"><b>Kantongku</b></a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+             
             </div>
 
             <nav id="navbar" class="navbar">
@@ -57,10 +48,6 @@
                     @else
                     <li><a class="getstarted" href="{{route('login')}}">Login</a></li>
                     @endif
-
-                    <!-- <li><a class="getstarted scrollto" href="#features">
-                            {{ Auth::check() ? 'Dashboard' : 'Login'}}
-                        </a></li> -->
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
@@ -94,7 +81,7 @@
             <div class="container">
 
                 <div class="section-title">
-                    <h2>App Features</h2>
+                    <h2>Fitur Aplikasi</h2>
                 </div>
 
                 <div class="row no-gutters">
@@ -142,41 +129,7 @@
                 </div>
             </div>
         </section><!-- End Details Section -->
-
-        <!-- ======= Gallery Section ======= -->
-        <section id="gallery" class="gallery">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Gallery</h2>
-                    <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-                </div>
-
-            </div>
-
-            <div class="container-fluid" data-aos="fade-up">
-                <div class="gallery-slider swiper">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-1.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-1.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-2.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-2.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-3.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-3.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-4.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-4.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-5.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-5.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-6.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-6.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-7.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-7.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-8.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-8.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-9.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-9.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-10.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-10.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-11.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-11.png')}}" class="img-fluid" alt=""></a></div>
-                        <div class="swiper-slide"><a href="{{asset('landing-page/assets/img/gallery/gallery-12.png')}}" class="gallery-lightbox" data-gall="gallery-carousel"><img src="{{asset('landing-page/assets/img/gallery/gallery-12.png')}}" class="img-fluid" alt=""></a></div>
-
-                    </div>
-                    <div class="swiper-pagination"></div>
-                </div>
-
-            </div>
-        </section><!-- End Gallery Section -->
-
+        
         <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials section-bg">
             <div class="container" data-aos="fade-up">
@@ -266,124 +219,27 @@
 
                 <div class="section-title">
 
-                    <h2>Frequently Asked Questions</h2>
+                    <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
                 </div>
 
                 <div class="accordion-list">
                     <ul>
+                        @foreach($faqs as $faq)
                         <li data-aos="fade-up">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1">Bagaimana cara mendaftar di KantongKu? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
+                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-{{$faq->id}}">{{$faq->question}}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <div id="accordion-list-{{$faq->id}}" class="collapse show" data-bs-parent=".accordion-list">
                                 <p>
-                                    Anda bisa mendaftar dengan mengunduh aplikasi KantongKu dari Google Play Store atau App Store, kemudian mengikuti langkah-langkah pendaftaran yang tersedia di aplikasi.
+                                  {{$faq->answer}} 
                                 </p>
                             </div>
                         </li>
-
-                        <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed">Apakah KantongKu gratis? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Ya, KantongKu menawarkan fitur dasar secara gratis. Namun, kami juga menyediakan versi Premium dengan fitur tambahan yang bisa diakses dengan biaya berlangganan.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-3" class="collapsed">Bagaimana cara mencatat pengeluaran dan pemasukan? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-3" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Setelah masuk ke dalam aplikasi, Anda bisa menambahkan transaksi baru dengan menekan tombol "Tambah Transaksi". Isi detail transaksi seperti jumlah, kategori, dan tanggal, lalu simpan.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="300">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-4" class="collapsed">Apakah data saya aman di KantongKu?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-4" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Kami menggunakan enkripsi tingkat tinggi untuk melindungi data Anda. Privasi dan keamanan data pengguna adalah prioritas utama kami.
-                                </p>
-                            </div>
-                        </li>
-
-                        <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#accordion-list-5" class="collapsed">Bagaimana cara mengatur anggaran bulanan? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
-                            <div id="accordion-list-5" class="collapse" data-bs-parent=".accordion-list">
-                                <p>
-                                    Anda bisa mengatur anggaran dengan masuk ke menu "Budgeting" di aplikasi. Tambahkan kategori anggaran yang ingin Anda kelola, tetapkan batas anggaran, dan pantau pengeluaran Anda agar tetap sesuai dengan anggaran.
-                                </p>
-                            </div>
-                        </li>
-
+                        @endforeach
                     </ul>
                 </div>
 
+
             </div>
         </section><!-- End Frequently Asked Questions Section -->
-
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-title">
-                    <h2>Contact</h2>
-                </div>
-
-                <div class="row">
-
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-map"></i>
-                                <h4>Address</h4>
-                                <p>A108 Adam Street,<br>New York, NY 535022</p>
-                            </div>
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-phone"></i>
-                                <h4>Call Us</h4>
-                                <p>+1 5589 55488 55<br>+1 5589 22548 64</p>
-                            </div>
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-envelope"></i>
-                                <h4>Email Us</h4>
-                                <p>contact@example.com<br>info@example.com</p>
-                            </div>
-                            <div class="col-lg-6 info">
-                                <i class="bx bx-time-five"></i>
-                                <h4>Working Hours</h4>
-                                <p>Mon - Fri: 9AM to 5PM<br>Sunday: 9AM to 1PM</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form" data-aos="fade-up">
-                            <div class="form-group">
-                                <input placeholder="Your Name" type="text" name="name" class="form-control" id="name" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input placeholder="Your Email" type="email" class="form-control" name="email" id="email" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <input placeholder="Subject" type="text" class="form-control" name="subject" id="subject" required>
-                            </div>
-                            <div class="form-group mt-3">
-                                <textarea placeholder="Message" class="form-control" name="message" rows="5" required></textarea>
-                            </div>
-                            <div class="my-3">
-                                <div class="loading">Loading</div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
-                        </form>
-                    </div>
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
 
