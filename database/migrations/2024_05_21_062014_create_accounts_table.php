@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             // relations with user
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
 
             $table->string('name');
             $table->integer('balance')->default(0);
@@ -22,8 +22,6 @@ return new class extends Migration
             $table->boolean('is_default')->default(false);
 
             $table->timestamps();
-            // soft delete
-            $table->softDeletes();
         });
     }
 
