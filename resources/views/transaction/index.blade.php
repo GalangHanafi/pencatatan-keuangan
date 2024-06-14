@@ -52,7 +52,10 @@
                     <input type="date" class="form-control" name="end_date" value="{{ request('end_date') }}">
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="form-control bg-primary text-light">Filter</button>
+                    <button class="btn btn-primary w-100">
+                        <i class="ti ti-filter me-2"></i>
+                        Filter
+                    </button>
                 </div>
             </div>
         </form>
