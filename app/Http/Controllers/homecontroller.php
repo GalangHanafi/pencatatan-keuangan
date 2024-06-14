@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Benefit;
+use App\Models\Faq;
 use App\Models\Feature;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
+    public function index(){
         $data = [
             'benefits' => Benefit::all(),
             'features' => Feature::all(),
+            'faqs' => Faq::all(),
         ];
 
-        return view("welcome", $data);
+        return view('welcome', $data);
     }
 }
