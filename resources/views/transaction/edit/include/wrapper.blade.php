@@ -29,7 +29,7 @@
             <div class="mb-3">
                 <label for="account_id" class="form-label">Account</label>
                 <input autocomplete="off" type="text" class="form-control" name="account" id="account"
-                    value="{{ old('account', $transaction->account->name) }}" readonly>
+                    value="{{ old('account', $transaction->account->name) }}" disabled>
                 <x-input-error :messages="$errors->get('account_id')" class="mt-2" />
             </div>
 
