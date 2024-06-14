@@ -28,14 +28,8 @@
             </div>
             <div class="mb-3">
                 <label for="account_id" class="form-label">Account</label>
-                <select class="form-select" name="account_id" id="account_id">
-                    <option value="">Select an account</option>
-                    @foreach ($accounts as $account)
-                        <option value="{{ $account->id }}"
-                            {{ $transaction->account_id == $account->id ? 'selected' : '' }}>{{ $account->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <input autocomplete="off" type="text" class="form-control" name="account" id="account"
+                    value="{{ old('account', $transaction->account->name) }}" readonly>
                 <x-input-error :messages="$errors->get('account_id')" class="mt-2" />
             </div>
 
@@ -43,8 +37,8 @@
                 <label for="amount" class="form-label">Amount</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Rp</span>
-                    <input autocomplete="off" type="text" class="form-control mask-money" name="amount" id="amount"
-                        value="{{ old('amount', $transaction->amount) }}" required aria-label="Amount"
+                    <input autocomplete="off" type="text" class="form-control mask-money" name="amount"
+                        id="amount" value="{{ old('amount', $transaction->amount) }}" required aria-label="Amount"
                         aria-describedby="basic-addon1">
                 </div>
                 <x-input-error :messages="$errors->get('amount')" class="mt-2" />
