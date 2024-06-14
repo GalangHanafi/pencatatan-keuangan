@@ -12,7 +12,7 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Edit account</label>
-                    <input type="text" class="form-control" name="name" id="name"
+                    <input autocomplete="off" type="text" class="form-control" name="name" id="name"
                         value="{{ $account->name }}" required>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
@@ -21,7 +21,7 @@
                     <label for="balance" class="form-label">Edit Balance</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">Rp</span>
-                        <input type="text" class="form-control mask-money" name="balance" id="balance"
+                        <input autocomplete="off" type="text" class="form-control mask-money" name="balance" id="balance"
                             value="{{ $account->balance }}" required aria-label="Balance"
                             aria-describedby="basic-addon1">
                     </div>

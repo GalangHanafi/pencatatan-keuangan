@@ -10,7 +10,7 @@
 
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="name" required>
+                <input autocomplete="off" type="text" class="form-control" name="name" id="name" required>
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
             <div class="mb-3">
@@ -38,7 +38,7 @@
                 <label for="amount" class="form-label">Amount</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Rp</span>
-                    <input type="text" class="form-control mask-money" name="amount" id="amount" required
+                    <input autocomplete="off" type="text" class="form-control mask-money" name="amount" id="amount" required
                         aria-label="Amount" aria-describedby="basic-addon1">
                 </div>
                 <x-input-error :messages="$errors->get('amount')" class="mt-2" />
@@ -46,7 +46,7 @@
 
             <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" name="date" id="date" required>
+                <input autocomplete="off" type="date" class="form-control" name="date" id="date" required>
                 <x-input-error :messages="$errors->get('date')" class="mt-2" />
             </div>
             <div class="mb-3">

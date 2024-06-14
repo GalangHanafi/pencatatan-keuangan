@@ -9,7 +9,7 @@
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Category Name</label>
-                    <input type="text" class="form-control" name="name" id="name" required>
+                    <input autocomplete="off" type="text" class="form-control" name="name" id="name" required>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
