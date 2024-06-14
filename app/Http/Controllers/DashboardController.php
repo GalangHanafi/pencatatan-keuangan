@@ -26,7 +26,7 @@ class DashboardController extends Controller
             ->sum('amount');
 
         $data = [
-            'title'         => 'Dashboard Test',
+            'title'         => 'Dashboard',
             'totalBalance'  => $totalBalance,
             'totalIncome'   => $totalIncome,
             'totalExpense'  => $totalExpense,

@@ -71,7 +71,8 @@
                                                     <span><i class="{{ $customCategory->icon }} mx-2"></i></span>
                                                     {{ $customCategory->name }}
                                                 </p>
-                                                <p class=>Do you really want to delete this category?</p>
+                                                <p>Do you really want to delete this category?</p>
+                                                <p class="text-danger fw-bold mt-3">All transactions belonging to this category will be deleted!</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"

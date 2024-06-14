@@ -282,7 +282,6 @@ class TransactionController extends Controller
 
         // validation
         $data = $request->validate([
-            'account_id' => 'required',
             'category_id' => 'required',
             'name' => 'required',
             'description' => 'nullable|string',

@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
-            <a href="{{ route('account.create') }}" class="btn btn-primary mb-3">
+            <a href="{{ route('feature.create') }}" class="btn btn-primary mb-3">
                 <i class="ti ti-plus me-2"></i>
                 Create New
             </a>
@@ -12,7 +12,6 @@
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
                     <tr>
-                        {{-- number --}}
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0"></h6>
                         </th>
@@ -20,7 +19,10 @@
                             <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Balance</h6>
+                            <h6 class="fw-semibold mb-0">Icon</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Deskripsi</h6>
                         </th>
                         <th class="border-bottom-0">
                             <h6 class="fw-semibold mb-0">Action</h6>
@@ -29,23 +31,29 @@
                 </thead>
                 <tbody>
                     {{-- looping custom accounts --}}
-                    @forelse ($accounts as $account)
+                    @forelse ($features as $account)
                         <tr>
                             <td class="border-bottom-0">
                                 <h6 class="fw-semibold mb-0">{{ $loop->iteration }}</h6>
                             </td>
                             <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
-                                    <i class="{{ $account->icon }} display-6"></i>
                                     <span>{{ $account->name }}</span>
                                 </div>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="mb-0 fw-normal">Rp. {{ number_format($account->balance, 0, ',', '.') }}</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="{{ $account->icon }} display-6"></i>
+                                </div>
+                            </td>
+                            <td class="border-bottom-0">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span>{{ $account->description }}</span>
+                                </div>
                             </td>
                             <td class="border-bottom-0">
                                 {{-- edit button --}}
-                                <a href="{{ route('account.edit', $account) }}" class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('feature.edit', $account) }}" class="btn btn-primary btn-sm">Edit</a>
                                 {{-- delete button --}}
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $account->id }}">
@@ -68,13 +76,12 @@
                                                     <span><i class="{{ $account->icon }} mx-2"></i></span>
                                                     {{ $account->name }}
                                                 </p>
-                                                <p>Do you really want to delete this account?</p>
-                                                <p class="text-danger fw-bold mt-3">All transactions belonging to this account will be deleted!</p>
+                                                <p class=>Do you really want to delete this account?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('account.destroy', $account->id) }}"
+                                                <form action="{{ route('feature.destroy', $account->id) }}"
                                                     method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')

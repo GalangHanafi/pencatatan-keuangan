@@ -12,6 +12,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IconController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WhyController;
+use App\Http\Controllers\BenefitController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Console\View\Components\Warn;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -29,6 +31,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // guest
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
+
 // check icon
 Route::get('/icon', [IconController::class, 'index']);
 
@@ -63,6 +66,7 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::resource('faq', FaqController::class)->except(['show']);
     Route::resource('feature', FeatureController::class)->except(['show']);
     Route::resource('why', WhyController::class)->except(['show']);
+    Route::resource('benefit', BenefitController::class)->except(['show']);
 });
 
 require __DIR__ . '/auth.php';

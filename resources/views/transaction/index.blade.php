@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <div class="d-flex align-items-center justify-content-between">
-            <h5 class="card-title fw-semibold mb-4">Your {{ $title }}</h5>
+            <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
             <div>
                 <a href="{{ route('transaction.export.pdf', request()->all()) }}" class="btn btn-success mb-3">
                     <i class="ti ti-download me-2"></i>
@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <!-- Formulir Filter -->
+        <!-- Form Filter -->
         <form method="GET" action="{{ route('transaction.index') }}" class="mb-4">
             <div class="row">
                 <div class="col-md-2">
@@ -46,20 +46,21 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <input type="date" class="form-control" name="start_date" value="{{ request('start_date') }}"
-                        placeholder="Tanggal Mulai">
+                    <input type="date" class="form-control" name="start_date" value="{{ request('start_date') }}">
                 </div>
                 <div class="col-md-2">
-                    <input type="date" class="form-control" name="end_date" value="{{ request('end_date') }}"
-                        placeholder="Tanggal Akhir">
+                    <input type="date" class="form-control" name="end_date" value="{{ request('end_date') }}">
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" class="form-control bg-primary text-light">Filter</button>
+                    <button class="btn btn-primary w-100">
+                        <i class="ti ti-filter me-2"></i>
+                        Filter
+                    </button>
                 </div>
             </div>
         </form>
 
-        {{-- daftar transaksi --}}
+        {{-- transaction table --}}
         <div class="table-responsive">
             <table class="table text-nowrap mb-0 align-middle">
                 <thead class="text-dark fs-4">
@@ -68,40 +69,40 @@
                             <h6 class="fw-semibold mb-0"></h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Sumber</h6>
+                            <h6 class="fw-semibold mb-0">Source</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Kategori</h6>
+                            <h6 class="fw-semibold mb-0">Category</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Nama</h6>
+                            <h6 class="fw-semibold mb-0">Name</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Deskripsi</h6>
+                            <h6 class="fw-semibold mb-0">Description</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Tipe</h6>
+                            <h6 class="fw-semibold mb-0">Amount</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Jumlah</h6>
+                            <h6 class="fw-semibold mb-0">Date</h6>
                         </th>
                         <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Tanggal</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                            <h6 class="fw-semibold mb-0">Aksi</h6>
+                            <h6 class="fw-semibold mb-0">Action</h6>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- looping transaksi --}}
+                    {{-- Loop Transaction --}}
                     @forelse ($transactions as $transaction)
                         <tr>
                             <td class="border-bottom-0">
                                 <h6 class="fw-semibold mb-0">{{ $loop->iteration }}</h6>
                             </td>
                             <td class="border-bottom-0">
-                                <p class="mb-0 fw-normal">{{ $transaction->account->name }}</p>
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="{{ $transaction->account->icon }} display-6"></i>
+                                    <p class="mb-0 fw-normal">{{ $transaction->account->name }}</p>
+                                </div>
                             </td>
                             <td class="border-bottom-0">
                                 <div class="d-flex align-items-center gap-2">
@@ -115,29 +116,14 @@
                             <td class="border-bottom-0">
                                 <p class="mb-0 fw-normal">{{ $transaction->description }}</p>
                             </td>
-
                             <td class="border-bottom-0">
                                 @if ($transaction->type == 'income')
-                                    <p class="mb-0 fw-normal text-success">{{ $transaction->type }}</p>
-                                @elseif($transaction->type == 'expense')
-                                    <p class="mb-0 fw-normal text-danger">{{ $transaction->type }}</p>
-                                @else
-                                    <p class="mb-0 fw-normal">{{ $transaction->type }}</p>
-                                @endif
-                            </td>
-
-                            <td class="border-bottom-0">
-                                @if ($transaction->type == 'income')
-                                    <p class="mb-0 fw-normal text-success">
-                                        Rp. {{ number_format($transaction->amount, 0, ',', '.') }} +
-                                    </p>
-                                @elseif($transaction->type == 'expense')
-                                    <p class="mb-0 fw-normal text-danger">
-                                        Rp. {{ number_format($transaction->amount, 0, ',', '.') }} -
+                                    <p class="mb-0 fw-normal text-success text-right">
+                                        + Rp. {{ number_format($transaction->amount, 0, ',', '.') }}
                                     </p>
                                 @else
-                                    <p class="mb-0 fw-normal">
-                                        Rp. {{ number_format($transaction->amount, 0, ',', '.') }}
+                                    <p class="mb-0 fw-normal text-danger text-right">
+                                        - Rp. {{ number_format($transaction->amount, 0, ',', '.') }}
                                     </p>
                                 @endif
                             </td>
@@ -145,10 +131,10 @@
                                 <p class="mb-0 fw-normal">{{ $transaction->date }}</p>
                             </td>
                             <td class="border-bottom-0">
-                                {{-- tombol edit --}}
+                                {{-- Edit Button --}}
                                 <a href="{{ $transaction->type == 'income' ? route('transaction.edit.income', $transaction) : route('transaction.edit.expense', $transaction) }}"
                                     class="btn btn-primary btn-sm">Edit</a>
-                                {{-- tombol hapus --}}
+                                {{-- Delete Button --}}
                                 <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal{{ $transaction->id }}">
                                     Hapus
@@ -161,7 +147,7 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h1 class="modal-title fs-5"
-                                                    id="deleteModal{{ $transaction->id }}Label">Apakah Anda Yakin?
+                                                    id="deleteModal{{ $transaction->id }}Label">Are You Sure?
                                                 </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Tutup"></button>
@@ -171,7 +157,7 @@
                                                     <span><i class="{{ $transaction->icon }} mx-2"></i></span>
                                                     {{ $transaction->name }}
                                                 </p>
-                                                <p>Apakah Anda benar-benar ingin menghapus transaksi ini?</p>
+                                                <p>Do you really want to delete this transaction?</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -180,7 +166,7 @@
                                                     method="POST" class="d-inline-block">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                             </div>
                                         </div>
@@ -191,11 +177,11 @@
                     @empty
                         <tr>
                             <td class="border-bottom-0 text-center" colspan="9">
-                                <h2 class="fw-semibold my-5">Tidak ada {{ $title }} ditemukan</h2>
+                                <h2 class="fw-semibold my-5">No {{ $title }} found</h2>
                             </td>
                         </tr>
                     @endforelse
-                    {{-- akhir looping transaksi --}}
+                    {{-- End Looping Transactions --}}
                 </tbody>
             </table>
         </div>

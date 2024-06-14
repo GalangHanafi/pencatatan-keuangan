@@ -10,7 +10,7 @@
 
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" name="name" id="name"
+                <input autocomplete="off" type="text" class="form-control" name="name" id="name"
                     value="{{ old('name', $transaction->name) }}" required>
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -28,14 +28,8 @@
             </div>
             <div class="mb-3">
                 <label for="account_id" class="form-label">Account</label>
-                <select class="form-select" name="account_id" id="account_id">
-                    <option value="">Select an account</option>
-                    @foreach ($accounts as $account)
-                        <option value="{{ $account->id }}"
-                            {{ $transaction->account_id == $account->id ? 'selected' : '' }}>{{ $account->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <input autocomplete="off" type="text" class="form-control" name="account" id="account"
+                    value="{{ old('account', $transaction->account->name) }}" disabled>
                 <x-input-error :messages="$errors->get('account_id')" class="mt-2" />
             </div>
 
@@ -43,8 +37,8 @@
                 <label for="amount" class="form-label">Amount</label>
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">Rp</span>
-                    <input type="text" class="form-control mask-money" name="amount" id="amount"
-                        value="{{ old('amount', $transaction->amount) }}" required aria-label="Amount"
+                    <input autocomplete="off" type="text" class="form-control mask-money" name="amount"
+                        id="amount" value="{{ old('amount', $transaction->amount) }}" required aria-label="Amount"
                         aria-describedby="basic-addon1">
                 </div>
                 <x-input-error :messages="$errors->get('amount')" class="mt-2" />
@@ -52,7 +46,7 @@
 
             <div class="mb-3">
                 <label for="date" class="form-label">Date</label>
-                <input type="date" class="form-control" name="date" id="date"
+                <input autocomplete="off" type="date" class="form-control" name="date" id="date"
                     value="{{ old('date', $transaction->date) }}" required>
                 <x-input-error :messages="$errors->get('date')" class="mt-2" />
             </div>

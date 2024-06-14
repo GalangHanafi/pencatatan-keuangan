@@ -17,7 +17,7 @@
                     <span class="hide-menu">Home</span>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('dashboard') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('transaction*') ? 'active' : ''}}" href="{{ route('dashboard') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
@@ -30,28 +30,32 @@
                 </li>
                 @if (auth()->user()->is_superadmin)
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('faq.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->is('faq*') ? 'active' : '' }}" href="{{ route('faq.index') }}" aria-expanded="false">
                             <span>
-                                <i class="ti ti-cards"></i>
+                                <i class="ti ti-question-mark"></i>
                             </span>
                             <span class="hide-menu">Faq</span>
                         </a>
-                        <a class="sidebar-link" href="{{ route('feature.index') }}" aria-expanded="false">
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ request()->is('feature*') ? 'active' : '' }}" href="{{ route('feature.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-cards"></i>
                             </span>
                             <span class="hide-menu">Feature</span>
                         </a>
-                        <a class="sidebar-link" href="{{ route('why.index') }}" aria-expanded="false">
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link {{ request()->is('benefit*') ? 'active' : '' }}" href="{{ route('benefit.index') }}" aria-expanded="false">
                             <span>
-                                <i class="ti ti-cards"></i>
+                                <i class="ti ti-thumb-up"></i>
                             </span>
-                            <span class="hide-menu">Why</span>
+                            <span class="hide-menu">Benefit</span>
                         </a>
                     </li>
                 @else
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('account.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->is('account*') ? 'active' : '' }}" href="{{ route('account.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-cards"></i>
                             </span>
@@ -59,7 +63,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('transaction.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->is('transaction*') ? 'active' : ''}}" href="{{ route('transaction.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-file-description"></i>
                             </span>
@@ -67,7 +71,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link" href="{{ route('category.index') }}" aria-expanded="false">
+                        <a class="sidebar-link {{ request()->is('category*') ? 'active' : ''}}" href="{{ route('category.index') }}" aria-expanded="false">
                             <span>
                                 <i class="ti ti-typography"></i>
                             </span>

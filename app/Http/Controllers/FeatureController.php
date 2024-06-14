@@ -4,35 +4,65 @@ namespace App\Http\Controllers;
 
 use App\Models\Feature;
 use Illuminate\Http\Request;
+use App\Models\Icon;
 
 class FeatureController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Menampilkan daftar resource.
      */
     public function index()
     {
-        //
+        $features = Feature::all();
+        $data = [
+            'title' => 'Feature',
+            'breadcrumbs' => [
+                'features' => '#',
+            ],
+            'features' => $features,
+            'content' => 'feature.index',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Menampilkan form untuk membuat resource baru.
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Create Feature',
+            'breadcrumbs' => [
+                'Feature' => route('feature.index'),
+                'Create' => '#',
+            ],
+            'content' => 'feature.create',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Menyimpan resource yang baru dibuat.
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'icon' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $data['icon'] = 'bx bx-' . $data['icon'];
+
+        Feature::create($data);
+
+        return redirect()->route('feature.index')->with('success', 'Feature berhasil dibuat.');
     }
 
     /**
-     * Display the specified resource.
+     * Menampilkan resource yang spesifik.
      */
     public function show(Feature $feature)
     {
@@ -40,26 +70,49 @@ class FeatureController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Menampilkan form untuk mengedit resource yang spesifik.
      */
     public function edit(Feature $feature)
     {
-        //
+        $data = [
+            'title' => 'Edit Feature',
+            'breadcrumbs' => [
+                'Feature' => route('feature.index'),
+                'Edit' => '#',
+            ],
+            'feature' => $feature, // Single feature object to be edited
+            'content' => 'feature.edit',
+        ];
+
+        return view("admin.layouts.wrapper", $data);
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * Memperbarui resource yang spesifik.
      */
     public function update(Request $request, Feature $feature)
     {
-        //
+        $data = $request->validate([
+            'icon' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+
+        $data['icon'] = 'bx bx-' . $data['icon'];
+        $feature->update($data);
+
+        return redirect()->route('feature.index')->with('success', 'Feature berhasil diperbarui.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus resource yang spesifik.
      */
     public function destroy(Feature $feature)
     {
-        //
+        $feature->delete();
+
+        return redirect()->route('feature.index')
+            ->with('success', 'Feature berhasil dihapus.');
     }
 }

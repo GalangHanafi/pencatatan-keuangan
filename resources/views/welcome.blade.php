@@ -88,31 +88,13 @@
                     <div class="col-xl-7 d-flex align-items-stretch order-2 order-lg-1">
                         <div class="content d-flex flex-column justify-content-center">
                             <div class="row">
-                                <div class="col-md-6 icon-box" data-aos="fade-up">
-                                    <i class="bx bx-receipt"></i>
-                                    <h4>Pelacakan Pengeluaran Otomatis.</h4>
-                                    <p>Pantau setiap pengeluaran Anda tanpa ribet</p>
-                                </div>
+                                @foreach ($features as $item)
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
-                                    <i class="bx bx-cube-alt"></i>
-                                    <h4>Anggaran Bulanan.</h4>
-                                    <p>Buat dan kelola anggaran untuk berbagai kategori pengeluaran</p>
+                                <i class="{{ $item->icon }} display-6"></i>
+                                    <h4>{{$item->name}}</h4>
+                                    <p>{{$item->description}}</p>
                                 </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
-                                    <i class="bx bx-time"></i>
-                                    <h4>Pengingat Pembayaran.</h4>
-                                    <p>Tidak perlu lagi khawatir terlambat bayar tagihan.</p>
-                                </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
-                                    <i class="bx bx-shield"></i>
-                                    <h4>Keamanan Terjamin.</h4>
-                                    <p>Data keuangan Anda aman dengan enkripsi tingkat tinggi</p>
-                                </div>
-                                <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
-                                    <i class="bx bx-atom"></i>
-                                    <h4>Laporan Keuangan.</h4>
-                                    <p>Lihat laporan keuangan harian, mingguan, atau bulanan dengan visual yang mudah dipahami</p>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -137,9 +119,9 @@
                         <p class="fst-italic">
                         </p>
                         <ul>
-                            <li><i class="bi bi-check"></i> Mudah Digunakan: Antarmuka yang user-friendly membuat siapa saja bisa menggunakan KantongKu tanpa kesulitan.</li>
-                            <li><i class="bi bi-check"></i> Akses Kapan Saja, Di Mana Saja: Aplikasi tersedia di Android dan iOS, sehingga Anda bisa mengakses keuangan Anda di mana saja.</li>
-                            <li><i class="bi bi-check"></i> Gratis: Nikmati semua fitur dasar tanpa biaya tambahan. Upgrade ke Premium untuk fitur lebih lanjut.</li>
+                            @foreach ($benefits as $item)
+                            <li><i class="bi bi-check"></i>{{$item->benefit}}</li>
+                            @endforeach
                         </ul>
                         <p>
                         </p>
