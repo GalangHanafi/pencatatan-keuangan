@@ -68,7 +68,8 @@
                                                     <span><i class="{{ $account->icon }} mx-2"></i></span>
                                                     {{ $account->name }}
                                                 </p>
-                                                <p class=>Do you really want to delete this account?</p>
+                                                <p>Do you really want to delete this account?</p>
+                                                <p class="text-danger fw-bold mt-3">All transactions belonging to this account will be deleted!</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
