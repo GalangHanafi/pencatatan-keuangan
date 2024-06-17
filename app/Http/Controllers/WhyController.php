@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Why;
 use Illuminate\Http\Request;
 
@@ -69,6 +70,7 @@ class WhyController extends Controller
         return view("admin.layouts.wrapper", $data);
     }
 
+
     /**
      * Update the specified resource in storage.
      */
@@ -93,6 +95,8 @@ class WhyController extends Controller
      */
     public function destroy(Why $why)
     {
+        $why->delete();
+        return redirect()->route('why.index')->with('danger', '"' . $why->content . '" deleted successfully');
         $why->delete();
         return redirect()->route('why.index')->with('danger', '"' . $why->content . '" deleted successfully');
     }

@@ -10,6 +10,7 @@ class Why extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         'content',
     ];
 }
