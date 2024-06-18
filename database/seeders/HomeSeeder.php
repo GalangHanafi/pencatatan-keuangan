@@ -16,7 +16,7 @@ class HomeSeeder extends Seeder
      */
     public function run(): void
     {
-        Feature::create(
+        Feature::insert([
             [
                 'name' => 'Pencatatan Pengeluaran dan Pemasukan.',
                 'description' => 'Pantau setiap pengeluaran Anda tanpa ribet',
@@ -27,15 +27,15 @@ class HomeSeeder extends Seeder
                 'description' => 'Lihat laporan keuangan harian, mingguan, atau bulanan dengan visual yang mudah dipahami',
                 'icon' => 'bx bx-atom',
             ],
-        );
+        ]);
 
-        Benefit::create(
+        Benefit::insert([
             ['benefit' => 'Mudah Digunakan: Antarmuka yang user-friendly membuat siapa saja bisa menggunakan KantongKu tanpa kesulitan.',],
             ['benefit' => 'Akses Kapan Saja, Di Mana Saja: Aplikasi ini dapat diakses menggunakan browser, sehingga Anda bisa mengakses keuangan Anda di mana saja..'],
             ['benefit' => 'Gratis: Nikmati semua fitur dasar tanpa biaya tambahan. Upgrade ke Premium untuk fitur lebih lanjut.'],
-        );
+        ]);
 
-        Faq::create(
+        Faq::insert([
             [
                 'question' => 'Apa itu KantongKu?',
                 'answer' => 'KantongKu adalah aplikasi berbasis web yang memudahkan Anda untuk memantau dan mengelola keuangan Anda. Mulai dari pengeluaran, pemasukan, dan laporan keuangan.'
@@ -56,6 +56,6 @@ class HomeSeeder extends Seeder
                 'question' => 'Apakah data saya aman di KantongKu?',
                 'answer' => ' Kami menggunakan enkripsi tingkat tinggi untuk melindungi data Anda. Privasi dan keamanan data pengguna adalah prioritas utama kami.'
             ],
-        );
+        ]);
     }
 }
