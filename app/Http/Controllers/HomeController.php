@@ -8,7 +8,7 @@ use App\Models\Faq;
 use App\Models\Feature;
 use App\Models\Why;
 use Illuminate\Http\Request;
-
+ 
 class HomeController extends Controller
 {
     public function index()
