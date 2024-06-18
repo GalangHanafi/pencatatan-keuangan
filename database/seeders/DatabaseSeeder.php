@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             IconSeeder::class,
             User1Seeder::class,
             User2Seeder::class,
+            HomeSeeder::class
         ]);
 
         // make superadmin
