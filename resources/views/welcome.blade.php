@@ -205,7 +205,7 @@
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer class="main-footer container-fluid pt-4 pb-4" style="background-color: #f8f9fa;">
+    <footer class="container main-footer container-fluid pt-4 pb-4" style="background-color: #f8f9fa;">
         <div class="row">
             <div class="col-md-4 mb-3">
                 <h5 style="font-weight: bold;"><i class="ti ti-comet"></i> Tentang Kami</h5>
