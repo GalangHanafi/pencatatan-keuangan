@@ -23,7 +23,7 @@
                     </thead>
                     <tbody>
                         {{-- looping custom accounts --}}
-                        @forelse ($ulasan as $item)
+                        @forelse ($reviews as $item)
                             <tr>
                                 <td class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">{{ $loop->iteration }}</h6>
@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="border-bottom-0">
                                     {{-- edit button --}}
-                                    {{-- <a href="{{ url('why/' . $item->id . '/edit') }}"
+                                    {{-- <a href="{{ url('review/' . $item->id . '/edit') }}"
                                         class="btn btn-primary btn-sm">Edit</a> --}}
                                     {{-- delete button --}}
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
@@ -66,7 +66,7 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
                                                         data-bs-dismiss="modal">Close</button>
-                                                    <form action="{{ route('why.destroy', $item->id) }}" method="POST"
+                                                    <form action="{{ route('review.destroy', $item->id) }}" method="POST"
                                                         class="d-inline-block">
                                                         @csrf
                                                         @method('DELETE')
@@ -95,7 +95,7 @@
     <div class="card">
         <div class="card-body">
             @if ($userReview)
-                <form action="{{ route('why.update', $userReview->id) }}" method="POST">
+                <form action="{{ route('review.update', $userReview->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -106,7 +106,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="form-label">Ulasan</label>
+                            <label for="content" class="form-label">Review</label>
                             <textarea type="text" class="form-control" name="content" id="content" required>{{ $userReview->content }}</textarea>
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
@@ -114,7 +114,7 @@
                     </div>
                 </form>
             @else
-                <form action="{{ url('why') }}" method="POST">
+                <form action="{{ url('review') }}" method="POST">
                     @csrf
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
                         <div class="mb-3">
@@ -124,7 +124,7 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="form-label">Ulasan</label>
+                            <label for="content" class="form-label">Review</label>
                             <textarea type="text" class="form-control" name="content" id="content" required></textarea>
                             <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>

@@ -148,10 +148,11 @@
                 </div>
                 <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
                     <div class="swiper-wrapper">
-                        @foreach ($ulasan as $item)
+                        @foreach ($reviews as $item)
                             <div class="swiper-slide">
                                 <div class="testimonial-item">
-                                    <h3>{{ $item->name }}</h3>
+                                    <img src="{{ asset($item->user->photo) }}" class="testimonial-img" alt="">
+                                    <h3>{{ $item->user->name }}</h3>
                                     <p>
                                         <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                                         {{ $item->content }}
