@@ -157,4 +157,9 @@ class User extends Authenticatable implements MustVerifyEmail
             'is_default' => true
         ]);
     }
+
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
 }

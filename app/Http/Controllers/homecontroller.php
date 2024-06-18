@@ -6,7 +6,7 @@ use App\Models\Account;
 use App\Models\Benefit;
 use App\Models\Faq;
 use App\Models\Feature;
-use App\Models\Why;
+use App\Models\Review;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,8 +17,7 @@ class HomeController extends Controller
             'benefits' => Benefit::all(),
             'features' => Feature::all(),
             'faqs' => Faq::all(),
-            'user' => Account::all(),
-            'ulasan' => Why::all(),
+            'reviews' => Review::all(),
         ];
 
         return view('welcome', $data);

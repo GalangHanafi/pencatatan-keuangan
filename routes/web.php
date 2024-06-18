@@ -13,6 +13,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\WhyController;
 use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Console\View\Components\Warn;
 use Illuminate\Support\Facades\Redirect;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -64,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::resource('faq', FaqController::class)->except(['show']);
     Route::resource('feature', FeatureController::class)->except(['show']);
-    Route::resource('why', WhyController::class)->except(['show']);
+    Route::resource('review', ReviewController::class)->except(['show']);
     Route::resource('benefit', BenefitController::class)->except(['show']);
 });
 
