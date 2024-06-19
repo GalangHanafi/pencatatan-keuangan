@@ -98,7 +98,7 @@
                         <a class="sidebar-link {{ request()->is('reminder*') ? 'active' : '' }}"
                             href="{{ route('reminder.index') }}" aria-expanded="false">
                             <span>
-                                <i class="ti ti-typography"></i>
+                                <i class="ti ti-bell"></i>
                             </span>
                             <span class="hide-menu">Reminder</span>
                         </a>
