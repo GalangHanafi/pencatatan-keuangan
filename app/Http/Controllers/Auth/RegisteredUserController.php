@@ -49,7 +49,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        SendEmailVerificationJob::dispatch($user);
+        // SendEmailVerificationJob::dispatch($user);
 
         Auth::login($user);
 
