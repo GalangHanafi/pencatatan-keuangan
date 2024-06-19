@@ -162,4 +162,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Review::class);
     }
+
+    public function reminders()
+    {
+        return $this->hasMany(Reminder::class);
+    }
 }

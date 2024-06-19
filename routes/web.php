@@ -4,19 +4,15 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\IconController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\WhyController;
 use App\Http\Controllers\BenefitController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ReviewController;
-use Illuminate\Console\View\Components\Warn;
-use Illuminate\Support\Facades\Redirect;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('category', CategoryController::class)->except(['show']);
     Route::resource('account', AccountController::class)->except(['show']);
+    Route::resource('reminder', ReminderController::class)->except(['show']);
 
     Route::resource('transaction', TransactionController::class)->except(['show', 'edit', 'create']);
     Route::get('/transaction/create/expense', [TransactionController::class, 'createExpense'])->name('transaction.create.expense');
