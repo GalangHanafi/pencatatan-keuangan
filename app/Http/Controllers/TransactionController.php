@@ -6,7 +6,7 @@ use App\Models\Account;
 use App\Models\Category;
 use App\Models\Transaction;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -95,11 +95,22 @@ class TransactionController extends Controller
             'end_date' => $request->end_date,
         ];
 
-        $details = ['title' => 'Transaction Report', 'transactions' => $transactions];
+        $totalExpense = $transactions->where('type', 'expense')->sum('amount');
+        $totalIncome = $transactions->where('type', 'income')->sum('amount');
+        $totalBalance = $totalIncome - $totalExpense;
 
-        $pdf = FacadePdf::loadView('transaction.pdf', compact('transactions', 'filters'));
+        $data = [
+            'filters' => $filters,
+            'transactions' => $transactions,
+            'totalIncome' => $totalIncome,
+            'totalExpense' => $totalExpense,
+            'totalBalance' => $totalBalance
+        ];
 
+        $pdf = Pdf::loadView('transaction.pdf', $data);
         return $pdf->download('transaction.pdf');
+
+        return view('transaction.pdf', $data);
     }
 
     /**
