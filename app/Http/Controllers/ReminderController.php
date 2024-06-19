@@ -156,15 +156,15 @@ class ReminderController extends Controller
                 ->notify(new NotificationsReminderNotification($reminder));
 
             // set next reminder date based on frequency
-            // if ($reminder->frequency == 'week') {
-            //     $reminder->update(['date' => Carbon::parse($reminder->date)->next($reminder->day_of_week)->toDateString()]);
-            // } elseif ($reminder->frequency == 'month') {
-            //     $reminder->update(['date' => Carbon::parse($reminder->date)->addMonth()->toDateString()]);
-            // } elseif ($reminder->frequency == 'year') {
-            //     $reminder->update(['date' => Carbon::parse($reminder->date)->addYear()->toDateString()]);
-            // } elseif ($reminder->frequency == 'none') {
-            //     $reminder->delete();
-            // }
+            if ($reminder->frequency == 'week') {
+                $reminder->update(['date' => Carbon::parse($reminder->date)->next($reminder->day_of_week)->toDateString()]);
+            } elseif ($reminder->frequency == 'month') {
+                $reminder->update(['date' => Carbon::parse($reminder->date)->addMonth()->toDateString()]);
+            } elseif ($reminder->frequency == 'year') {
+                $reminder->update(['date' => Carbon::parse($reminder->date)->addYear()->toDateString()]);
+            } elseif ($reminder->frequency == 'none') {
+                $reminder->delete();
+            }
         }
 
         return response()->json(['message' => 'Reminders checked and notifications sent.']);
