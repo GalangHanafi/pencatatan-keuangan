@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ReminderNotification;
 use App\Models\Reminder;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ReminderController extends Controller
 {
@@ -142,5 +144,29 @@ class ReminderController extends Controller
         $reminder->delete();
 
         return redirect()->route('reminder.index')->with('success', $reminder->name . ' Reminder deleted successfully');
+    }
+
+    public function checkReminder()
+    {
+        // Get all reminders that need to be checked
+        $reminders = Reminder::where('date', '<=', now())->get();
+
+        foreach ($reminders as $reminder) {
+            // Send email notification to the user
+            Mail::to($reminder->user->email)->send(new ReminderNotification($reminder));
+
+            // set next reminder date based on frequency
+            if ($reminder->frequency == 'week') {
+                $reminder->date = Carbon::parse($reminder->date)->addWeek()->toDateString();
+            } elseif ($reminder->frequency == 'month') {
+                $reminder->date = Carbon::parse($reminder->date)->addMonth()->toDateString();
+            } elseif ($reminder->frequency == 'year') {
+                $reminder->date = Carbon::parse($reminder->date)->addYear()->toDateString();
+            } elseif ($reminder->frequency == 'none') {
+                $reminder->delete();
+            }
+        }
+
+        return response()->json(['message' => 'Reminders checked and notifications sent.']);
     }
 }

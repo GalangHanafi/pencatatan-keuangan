@@ -28,6 +28,11 @@ use App\Http\Controllers\ReviewController;
 // guest
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
 
+// check reminder make abstract url so only developer know it
+// add "yourdomain/$2a$12$0BSE1CUyzO/.Gcs8lodQa.RnCBl7QidTJSo4Q0dAbVV.2Pr4LlSr6" into cron-job.org
+// run it every 2 hours
+Route::get('/$2a$12$0BSE1CUyzO/.Gcs8lodQa.RnCBl7QidTJSo4Q0dAbVV.2Pr4LlSr6', [ReminderController::class, 'checkReminder']);
+
 // check icon
 Route::get('/icon', [IconController::class, 'index']);
 
