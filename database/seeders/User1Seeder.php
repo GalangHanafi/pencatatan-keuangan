@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +24,13 @@ class User1Seeder extends Seeder
 
         // verify email
         DB::table('users')->where('email', 'user1@example.com')->update(['email_verified_at' => now()]);
+
+        // make reminder
+        $user->reminders()->create([
+            'name' => 'test',
+            'frequency' => 'none',
+            'date' => Carbon::now()->toDateString(),
+        ]);
 
         // make default account and default categories for this user
         $user->createDefaultAccount();

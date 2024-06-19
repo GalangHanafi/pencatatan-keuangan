@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailVerificationJob;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -47,6 +48,8 @@ class RegisteredUserController extends Controller
         $user->createDefaultAccount();
 
         event(new Registered($user));
+
+        SendEmailVerificationJob::dispatch($user);
 
         Auth::login($user);
 
