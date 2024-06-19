@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ReminderNotification;
 use App\Models\Reminder;
 use App\Models\User;
+use App\Notifications\ReminderNotification as NotificationsReminderNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ReminderController extends Controller
 {
@@ -150,21 +150,21 @@ class ReminderController extends Controller
     {
         // Get all reminders that need to be checked
         $reminders = Reminder::where('date', '<=', now())->get();
-
         foreach ($reminders as $reminder) {
             // Send email notification to the user
-            Mail::to($reminder->user->email)->send(new ReminderNotification($reminder));
+            Notification::route('mail', $reminder->user->email)
+                ->notify(new NotificationsReminderNotification($reminder));
 
             // set next reminder date based on frequency
-            if ($reminder->frequency == 'week') {
-                $reminder->date = Carbon::parse($reminder->date)->addWeek()->toDateString();
-            } elseif ($reminder->frequency == 'month') {
-                $reminder->date = Carbon::parse($reminder->date)->addMonth()->toDateString();
-            } elseif ($reminder->frequency == 'year') {
-                $reminder->date = Carbon::parse($reminder->date)->addYear()->toDateString();
-            } elseif ($reminder->frequency == 'none') {
-                $reminder->delete();
-            }
+            // if ($reminder->frequency == 'week') {
+            //     $reminder->update(['date' => Carbon::parse($reminder->date)->next($reminder->day_of_week)->toDateString()]);
+            // } elseif ($reminder->frequency == 'month') {
+            //     $reminder->update(['date' => Carbon::parse($reminder->date)->addMonth()->toDateString()]);
+            // } elseif ($reminder->frequency == 'year') {
+            //     $reminder->update(['date' => Carbon::parse($reminder->date)->addYear()->toDateString()]);
+            // } elseif ($reminder->frequency == 'none') {
+            //     $reminder->delete();
+            // }
         }
 
         return response()->json(['message' => 'Reminders checked and notifications sent.']);

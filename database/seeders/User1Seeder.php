@@ -28,6 +28,11 @@ class User1Seeder extends Seeder
         // make reminder
         $user->reminders()->create([
             'name' => 'test',
+            'frequency' => 'month',
+            'date' => Carbon::now()->toDateString(),
+        ]);
+        $user->reminders()->create([
+            'name' => 'test none',
             'frequency' => 'none',
             'date' => Carbon::now()->toDateString(),
         ]);
