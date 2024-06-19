@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // verified
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('category', CategoryController::class)->except(['show']);
     Route::resource('account', AccountController::class)->except(['show']);
     Route::resource('reminder', ReminderController::class)->except(['show']);
