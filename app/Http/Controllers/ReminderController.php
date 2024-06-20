@@ -167,6 +167,6 @@ class ReminderController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Reminders checked and notifications sent.']);
+        // return response()->json(['message' => 'Reminders checked and notifications sent.']);
     }
 }
