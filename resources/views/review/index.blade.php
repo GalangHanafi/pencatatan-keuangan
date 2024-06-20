@@ -30,7 +30,7 @@
                                 </td>
                                 <td class="border-bottom-0">
                                     <div class="d-flex align-items-center gap-2">
-                                        <span>{{ $item->name }}</span>
+                                        <span>{{ $item->user->name }}</span>
                                     </div>
                                 </td>
                                 <td class="border-bottom-0">
