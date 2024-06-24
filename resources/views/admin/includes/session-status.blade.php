@@ -1,5 +1,5 @@
 @if (session('error'))
-    <x-alert type="danger"> {{ session('danger') }} </x-alert>
+    <x-alert type="danger"> {{ session('error') }} </x-alert>
 @endif
 @if (session('success'))
     <x-alert type="success"> {{ session('success') }} </x-alert>

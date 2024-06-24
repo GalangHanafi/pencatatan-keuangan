@@ -3,10 +3,12 @@
         <div class="d-flex align-items-center justify-content-between">
             <h5 class="card-title fw-semibold mb-4">{{ $title }}</h5>
             <div>
-                <a href="{{ route('transaction.export.pdf', request()->all()) }}" class="btn btn-success mb-3">
-                    <i class="ti ti-download me-2"></i>
-                    Export PDF
-                </a>
+                @if ($transactions->count() > 0)
+                    <a href="{{ route('transaction.export.pdf', request()->all()) }}" class="btn btn-success mb-3">
+                        <i class="ti ti-download me-2"></i>
+                        Export PDF
+                    </a>
+                @endif
                 <a href="{{ route('transaction.trash') }}" class="btn btn-danger mb-3">
                     <i class="ti ti-trash me-2"></i>
                     Trash
@@ -184,7 +186,7 @@
                     {{-- End Looping Transactions --}}
                 </tbody>
             </table>
-            {{ $users->onEachSide(5)->links() }}
+            {{ $transactions->onEachSide(5)->links() }}
         </div>
     </div>
 </div>

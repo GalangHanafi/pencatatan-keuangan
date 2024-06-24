@@ -413,6 +413,27 @@ class TransactionController extends Controller
         // restore transaction
         $transaction->restore();
 
+        // check account_id is related to user
+        $account = $user->accounts->where('id', $transaction->account_id)->first();
+        if (!$account) {
+            return redirect()->route('transaction.index')->with('error', 'Account not found!');
+        }
+
+        // if type is income, subtract account balance
+        if ($transaction->type === 'income') {
+            $account->balance -= $transaction->amount;
+        }
+
+        // if type is expense, add account balance
+        if ($transaction->type === 'expense') {
+            $account->balance += $transaction->amount;
+        }
+
+        // update transaction account
+        $account->update([
+            'balance' => $account->balance
+        ]);
+
         return redirect()->route('transaction.trash')->with('success', 'Transaction restored successfully!');
     }
 
