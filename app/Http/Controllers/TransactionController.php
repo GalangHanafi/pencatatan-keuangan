@@ -46,7 +46,7 @@ class TransactionController extends Controller
         }
 
         // Get filtered and sorted transactions
-        $transactions = $transactionsQuery->get();
+        $transactions = $transactionsQuery->paginate(20);
 
         $data = [
             'title' => 'Transaction',

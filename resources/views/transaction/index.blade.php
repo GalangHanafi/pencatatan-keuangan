@@ -184,6 +184,7 @@
                     {{-- End Looping Transactions --}}
                 </tbody>
             </table>
+            {{ $users->onEachSide(5)->links() }}
         </div>
     </div>
 </div>
