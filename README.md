@@ -45,9 +45,9 @@ Kantongku is a financial tracking application that helps you record expenses and
     php artisan key:generate
     ```
 
-6. Migrate the database:
+6. Migrate the database and seed demo data:
     ```bash
-    php artisan migrate
+    php artisan migrate --seed
     ```
 
 7. Serve the application:
@@ -55,6 +55,12 @@ Kantongku is a financial tracking application that helps you record expenses and
     php artisan serve
     ```
 
-## Usage
+## Demo Data
 
-- Access the application via your web browser at `http://localhost:8000`.
+The application comes with demo data to help you get started quickly. You can log in with the following credentials:
+
+- **Email:** user1@example.com
+- **Password:** 12345678
+
+- **Email:** user2@example.com
+- **Password:** 12345678
